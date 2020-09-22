@@ -15,6 +15,13 @@ Victim::~Victim()
 
 Victim::Victim(const Victim &copy) : _name(copy._name){}
 
+void 		Victim::operator = (const Victim &s )
+{
+	if (&s != this)
+		this->_name = s._name;
+}
+
+
 void		Victim::getPolymorphed() const
 {
 	std::cout << _name << " has been turned into a cute little sheep!" << std::endl;
