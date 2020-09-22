@@ -39,6 +39,7 @@ float			operator + (const Fixed &fpnbr1, const Fixed &fpnbr2);
 float			operator - (const Fixed &fpnbr1, const Fixed &fpnbr2);
 float			operator * (const Fixed &fpnbr1, const Fixed &fpnbr2);
 float			operator / (const Fixed &fpnbr1, const Fixed &fpnbr2);
+// maak al deze kut operators member shit
 Fixed			min(Fixed fpnbr1, Fixed fpnbr2);
 Fixed			max(Fixed fpnbr1, Fixed fpnbr2);
 

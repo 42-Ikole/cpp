@@ -9,6 +9,5 @@ int main()
 	ZombieEvent		zombie;
 
 	zombie.randomChump();
-	system("leaks a.out");
 	return (0);
 }

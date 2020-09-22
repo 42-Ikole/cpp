@@ -98,9 +98,13 @@ void	contact::search_contact(int amount, contact contacts[8])
 		std::cout << "\nwhich contacts information would you like to see?\n";
 		if (std::getline(std::cin, line).good() == 0)
 			error("reading index failed!");
+		if (!line.compare("BREAK"))
+			return ;
 		int index = std::atoi(line.c_str());
-		if (index >= amount || index < 0)
-			std::cout << "\nInvalid input, try again!\n";
+		int i = 0;
+		while (line[i] >= '0' && line[i] < '8') {i++;}
+		if (index >= amount || index < 0 || line[i])
+			std::cout << "\e[0;31m" << "\nInvalid input, try again!\n\e[0;0m";
 		else {
 			std::cout << "first name:      " << contacts[index].first_name << "\n";
 			std::cout << "last name:       " << contacts[index].last_name << "\n";

@@ -13,7 +13,7 @@ $(NAME): $(SRC)
 
 %.o: %.c
 	@printf "\e[0;34mCompiling $<\n\e[0;35m"
-	@gcc $(FLAGS) -c $< -o $@
+	@clang++ $(FLAGS) -c $< -o $@
 
 test: all
 	@printf "\e[0;0m"

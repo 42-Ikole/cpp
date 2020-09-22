@@ -23,8 +23,8 @@ public:
             exit (0);
         }
         for (int i = 0; i < amount; i++) {
-            horde[i].name = generate_name();
-            horde[i].type = "Horde";
+            horde[i].setname(generate_name());
+            horde[i].settype("Horde");
         }
         announce(amount, horde);
         delete[] horde;

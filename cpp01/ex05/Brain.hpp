@@ -6,11 +6,11 @@
 
 class Brain
 {
-public:
+private:
     std::string name;
     int         age;
-    
-    std::string identify();
+public: 
+    std::string	identify();
 };
 
 #endif

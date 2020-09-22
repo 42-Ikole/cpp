@@ -75,6 +75,7 @@ void	FragTrap::vaulthunter_dot_exe(std::string const & target)
 		std::cout << "FR4G-TP " << name << " has insufficient energy!\n\n";
 	else {
 		energyPoints -= 25;
+		srand(time(NULL));
 		int attack = rand() % 5;
 		std::cout << "FR4G-TP " << name << " used " << attacks[attack];
 	}

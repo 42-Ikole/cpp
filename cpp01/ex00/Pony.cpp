@@ -3,7 +3,7 @@
 #include <string>
 #include <new>
 
-void    ponyOnTheHeap(void)
+void    Pony::ponyOnTheHeap(void)
 {
     Pony        *allocated_pony_1;
     Pony        *allocated_pony_2;
@@ -53,7 +53,7 @@ void    ponyOnTheHeap(void)
     delete allocated_pony_2;
 }
 
-void    ponyOnTheStack(void)
+void    Pony::ponyOnTheStack(void)
 {
     Pony        stack_pony_1;
     Pony        stack_pony_2;

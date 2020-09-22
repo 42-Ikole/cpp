@@ -8,13 +8,13 @@ class HumanB
 {
     private:
         std::string nname;
+        Weapon      *weapon;
+		std::string name;
     public:
         HumanB(std::string new_name): nname(new_name)
         {
             name = nname;
         }
-        Weapon      *weapon;
-		std::string name;
 		void		attack();
         void        setWeapon(Weapon &new_weapon);
 };

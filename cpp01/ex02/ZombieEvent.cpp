@@ -6,7 +6,7 @@
 
 void    ZombieEvent::setZombieType(Zombie *zombie)
 {
-    zombie->type = "BRAINDEAD";
+    zombie->settype("BRAINDEAD");
 }
 
 Zombie* ZombieEvent::newZombie(std::string name)
@@ -22,8 +22,8 @@ Zombie* ZombieEvent::newZombie(std::string name)
         std::cerr << e.what() << '\n';
         exit(1);
     }
-    new_zombie->name = name;
-    setZombieType(new_zombie);
+    new_zombie->setname(name);
+	setZombieType(new_zombie);
 	return (new_zombie);
 }
 
@@ -33,7 +33,7 @@ std::string	generate_name()
 	char 		consonents[] = {'b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'};
 	char 		vowels[] = {'a','e','i','o','u','y'};
 
-	// std::srand(time(NULL));
+	std::srand(time(NULL));
 	int random = rand() % 2;
 	int count = 0;
 	for (int i = 0; i < 8; i++) {
@@ -51,9 +51,8 @@ std::string	generate_name()
 void    ZombieEvent::randomChump()
 {
     Zombie *zombie;
-	Zombie z;
 	
     zombie = newZombie(generate_name());
-	z.announce(*zombie);
+	zombie->announce();
 	delete zombie;
 }

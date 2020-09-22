@@ -5,6 +5,7 @@
 
 int main()
 {
+	std::srand(time(NULL));
 	std::cout << "testing 5 zombies!\n\n";
     ZombieHorde horde5 (5);
 

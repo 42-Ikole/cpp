@@ -7,11 +7,13 @@
 
 class Human
 {
-public:
+private:
     Brain       brain;
     std::string name;
     int         age;
-    std::string identify();
+public:
+	Brain&		getbrain();
+   	std::string	identify();
 };
 
 #endif

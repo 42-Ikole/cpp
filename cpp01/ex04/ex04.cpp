@@ -4,10 +4,11 @@
 
 int main()
 {
-    std::string ref("HI THIS IS BRIAN");
-    const char  *pointer = ref.c_str();
+    std::string string("HI THIS IS BRIAN");
+    std::string *pointer = &string;
+	std::string &ref = string;
 
-    std::cout << pointer << "\n";
-    std::cout << ref << "\n";
+    std::cout << *pointer << std::endl;
+    std::cout << ref << std::endl;
     return (0);
 }

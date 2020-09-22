@@ -8,8 +8,6 @@ int main()
     Human bob;
 
     std::cout << bob.identify() << std::endl;
-    std::cout << bob.brain.identify() << std::endl;
+    std::cout << bob.getbrain().identify() << std::endl;
     return (0);
 }
-
-//check getbrain?? functie erbij?
