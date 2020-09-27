@@ -29,11 +29,12 @@ AMateria*	Cure::clone() const
 	{
 		std::cout << "allocation for clone failed" << std::endl;
 		return 	NULL;
-	}
+	}	
 	return clone;
 }
 
 void		Cure::use(ICharacter& target)
 {
 	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
+	AMateria::use(target);
 }

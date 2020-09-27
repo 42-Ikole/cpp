@@ -8,7 +8,10 @@ Ice::Ice() : AMateria("ice") {}
 
 Ice::~Ice() {}
 
-Ice::Ice(const Ice &Ice) : AMateria("ice") {}
+Ice::Ice(const Ice &Ice) : AMateria("ice")
+{
+	setXP(Ice.getXP());
+}
 
 void	Ice::operator = (const Ice &s)
 {
@@ -34,4 +37,5 @@ AMateria*	Ice::clone() const
 void		Ice::use(ICharacter& target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	AMateria::use(target);
 }

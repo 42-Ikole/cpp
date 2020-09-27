@@ -1,16 +1,29 @@
 
 #include "MateriaSource.hpp"
 
-#include <iostream>
-
 MateriaSource::MateriaSource()
 {
-	_Learned[0] = NULL;
-	_Learned[1] = NULL;
+	for (int i = 0; i < 4; i++)
+		this->learned[i] = NULL;
 }
 
 MateriaSource::~MateriaSource()
 {
+}
+
+MateriaSource::MateriaSource(const MateriaSource &ms)
+{
+	for (int i = 0; i < 4; i++)
+		this->learned[i] = ms.learned[i];
+}
+
+void	MateriaSource::operator = (const MateriaSource &s)
+{
+	if (&s != this)
+	{
+		for (int i = 0; i < 4; i++)
+			this->learned[i] = s.learned[i];
+	}
 }
 
 void		MateriaSource::learnMateria(AMateria* toLearn)
@@ -19,12 +32,9 @@ void		MateriaSource::learnMateria(AMateria* toLearn)
 		return ;
 	for (int i = 0; i < 4; i++)
 	{
-		if (_Learned[i] == toLearn)
-			return ;
-		if (!_Learned[i])
+		if (!this->learned[i])
 		{
-			_Learned[i] = toLearn;
-			std::cout << i << " | " << _Learned[i]->getType() << std::endl;
+			this->learned[i] = toLearn;
 			return ;
 		}
 	}
@@ -34,11 +44,9 @@ AMateria*	MateriaSource::createMateria(std::string const & type)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		std::cout << _Learned[i]->getType() << " == " << type << std::endl;
-		if (_Learned[i]->getType() == type)
+		if (this->learned[i]->getType() == type)
 		{
-			std::cout << "boris helpt me en dat is wholesome!\n";
-			return _Learned[i]->clone();
+			return this->learned[i]->clone();
 		}
 	}
 	return NULL;

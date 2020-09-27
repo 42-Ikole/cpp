@@ -9,12 +9,14 @@
 class Character : public ICharacter
 {
 	private:
-		std::string _Name;
-		AMateria	*_Inv[4];
+		std::string name;
+		AMateria	*inv[4];
 		Character();
 	public:
-		Character(std::string name);
+		Character(std::string _name);
 		~Character();
+		Character(const Character &character);
+		void	operator = (const Character &character);
 		std::string const & getName() const;
 		void equip(AMateria* m);
 		void unequip(int idx);
