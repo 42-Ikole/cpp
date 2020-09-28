@@ -9,8 +9,8 @@ int main(void)
 	try {
 		Bureaucrat *dude = new Bureaucrat("dude", 42);
 		Bureaucrat *newbie = new Bureaucrat("newbie", 140);
-		Form *one = new Form("01", 50);
-		Form *two = new Form("02", 50);
+		Form *one = new Form("01", 50, 59);
+		Form *two = new Form("02", 50, 60);
 		dude->signForm(*one);
 		newbie->signForm(*one);
 		std::cout << *dude;
