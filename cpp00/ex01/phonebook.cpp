@@ -137,7 +137,7 @@ int		main(void)
     while(1) {
 		std::cin.clear();
 		std::cin.sync();
-		if (std::getline(std::cin, str).good() == 0)
+		if (std::getline(std::cin, str).good() == false)
 			error("command");
 		if (!str.compare("ADD")) {
 			if (amount == 8) {
