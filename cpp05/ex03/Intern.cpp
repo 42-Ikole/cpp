@@ -25,7 +25,7 @@ int	Intern::arrLength(AForm **choices)
 
 AForm*		Intern::makeForm(std::string form, std::string target)
 {
-	AForm *ret;
+	AForm *ret = NULL;
 	AForm *choices[] = {
 			new ShrubberyCreationForm(target),
 			new RobotomyRequestForm(target), 
@@ -40,5 +40,12 @@ AForm*		Intern::makeForm(std::string form, std::string target)
 		else
 			ret = choices[i];
 	}
+	if (ret == NULL)
+		throw UCI;
 	return ret;
+}
+
+const char* Intern::UnknownClassIdentifier::what() const throw()
+{
+	return "unknown class identifier";
 }

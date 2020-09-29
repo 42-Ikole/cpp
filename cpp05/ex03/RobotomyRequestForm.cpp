@@ -4,7 +4,7 @@
 #include <iostream>
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) 
-: AForm("robotmy request", 72, 45)
+: AForm("robotomy request", 72, 45)
 {
 	p_target = target;
 }
