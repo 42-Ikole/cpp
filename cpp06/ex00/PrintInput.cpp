@@ -15,6 +15,21 @@ PrintInput::~PrintInput()
 {
 }
 
+PrintInput::PrintInput(const PrintInput &copy)
+{
+	this->p_input = copy.p_input;
+	this->p_nb = copy.p_nb;
+	this->p_dnb = copy.p_dnb;
+}
+
+PrintInput & PrintInput::operator = (const PrintInput &s)
+{
+	this->p_input = s.p_input;
+	this->p_nb = s.p_nb;
+	this->p_dnb = s.p_dnb;
+	return *this;
+}
+
 bool	PrintInput::isLiteral() const
 {
 	if (!std::strcmp("nan", this->p_input) || !std::strcmp("nanf", this->p_input) ||

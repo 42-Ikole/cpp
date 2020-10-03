@@ -18,6 +18,8 @@ class PrintInput
 	public:
 		PrintInput(char *str);
 		~PrintInput();
+		PrintInput(const PrintInput &copy);
+		PrintInput & operator = (const PrintInput &s);
 		void	PrintNumbers() const;
 };
 
