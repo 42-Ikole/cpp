@@ -57,7 +57,6 @@ bool	PrintInput::isValidInput() const
 void	PrintInput::PrintNumbers() const
 {
 	std::cout << std::setprecision(1) << std::fixed;
-	//check for nan inf etc.
 	this->printChar();
 	this->printInt();
 	this->printFloat();
@@ -78,10 +77,8 @@ void	PrintInput::printChar() const
 void	PrintInput::printInt() const
 {
 	std::cout << "Int: ";
-	if (isLiteral())
+	if (isLiteral() || isValidInput() == false)
 		std::cout << "impossible" << std::endl;
-	else if (isValidInput() == false)
-		std::cout << "Non displayable" << std::endl;
 	else
 		std::cout << p_nb << std::endl;
 }
@@ -90,7 +87,7 @@ void	PrintInput::printFloat() const
 {
 	std::cout << "Float: ";
 	if (isValidInput() == false && !isLiteral())
-		std::cout << "Non displayable" << std::endl;
+		std::cout << "impossible" << std::endl;
 	else	
 		std::cout << static_cast<float>(p_dnb) << "f" << std::endl;
 }
@@ -99,7 +96,7 @@ void	PrintInput::printDouble() const
 {
 	std::cout << "Double: ";
 	if (isValidInput() == false && !isLiteral())
-		std::cout << "Non displayable" << std::endl;
+		std::cout << "impossible" << std::endl;
 	else	
 		std::cout << p_dnb << std::endl;
 }
