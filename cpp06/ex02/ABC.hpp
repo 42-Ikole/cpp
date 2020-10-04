@@ -2,19 +2,18 @@
 #ifndef ABC_HPP
 # define ABC_HPP
 
-class ABase;
+class Base;
 
-class A :	public ABase
+class A : public Base
 {
 };
 
-class B :	public ABase
+class B : public Base
 {
 };
 
-class C :	public ABase
+class C : public Base
 {
 };
-
 
 #endif

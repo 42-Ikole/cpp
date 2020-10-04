@@ -2,10 +2,10 @@
 #ifndef ABASE_HPP
 # define ABASE_HPP
 
-class ABase
+class Base
 {
 	public:
-		virtual ~ABase() = 0;
+		virtual ~Base();
 };
 
 #endif
