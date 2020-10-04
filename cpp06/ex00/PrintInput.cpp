@@ -4,6 +4,9 @@
 #include <iostream>
 #include <iomanip>
 
+
+// fix die overflows niffau
+
 PrintInput::PrintInput(char *str)
 {
 	this->p_input = str;

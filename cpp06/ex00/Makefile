@@ -1,8 +1,10 @@
 
+NAME = convert
+
 SRCS = main.cpp PrintInput.cpp
 
-all:
-	clang++ $(SRCS) -o convert
+all: $(NAME)
+	clang++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
 test: all
 	./convert 65
@@ -10,4 +12,4 @@ test: all
 re: fclean all
 
 fclean:
-	@rm -rf convert
+	@rm -rf $(NAME)
