@@ -35,8 +35,9 @@ void Squad::operator = (const Squad &s)
 {
 	if (&s != this)
 	{
-		_Amount = s._Amount;
+		delete this;
 		
+		_Amount = s._Amount;
 		_Marines = new (std::nothrow) ISpaceMarine *[_Amount + 1];
 		if (!_Marines)
 		{
