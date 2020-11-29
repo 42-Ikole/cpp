@@ -2,7 +2,6 @@
 #include <string>
 #include <iostream>
 
-//goed checken niet gecopypaste!
 void        memoryLeak()
 {
     std::string*    panther = new std::string("String panther");
@@ -14,5 +13,5 @@ void        memoryLeak()
 int main()
 {
     memoryLeak();
-    while (1){};
+    system("leaks a.out");
 }

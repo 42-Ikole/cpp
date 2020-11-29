@@ -5,14 +5,16 @@
 
 class Pony
 {
-    private:
+private:
 	std::string	name;
 	int			speed;
 	int			stamina;
 	int			cooldown;
-	public:
-	void    ponyOnTheHeap(void);
-	void    ponyOnTheStack(void);
+public:
+	void    	ponyOnTheHeap(void);
+	void    	ponyOnTheStack(void);
+	int			calcTime(void);
+	std::string	getName(void);
 };
 
 

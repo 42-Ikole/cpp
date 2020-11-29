@@ -9,13 +9,14 @@ int main(int args, char **argv)
 	std::ofstream	replacement;
     std::string		read;
 	std::string		new_file;
+	size_t			loc = 0;
 
     if (args != 4) {
         std::cout << "invalid arguments!\n";
         return (1);
     }
-	std::string		to_replace (argv[2]);
-	std::string		replace_with (argv[3]);
+	std::string		to_replace(argv[2]);
+	std::string		replace_with(argv[3]);
     file.open(argv[1]);
     if (!file) {
         std::cout << "unable to open file!\n";
@@ -33,8 +34,13 @@ int main(int args, char **argv)
 			if (!file.eof())
 				std::cout << "getline failed" << std::endl;
 		}
-		while (read.find(to_replace) != (size_t)-1)
-			read.replace(read.find(to_replace), to_replace.length(), replace_with);
+		while (read.find(to_replace, loc) != read.npos) {
+			loc = read.find(to_replace, loc);
+			if (loc == read.npos)
+				break ;
+			read.replace(loc, to_replace.length(), replace_with);
+			loc += replace_with.length();
+		}
 		replacement << read;
 		if (!file.eof())
 			replacement << std::endl;

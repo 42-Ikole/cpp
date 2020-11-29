@@ -9,7 +9,7 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(SRC)
-	clang++ $(SRC) -o $(NAME)
+	clang++ $(FLAGS) $(SRC) -o $(NAME)
 
 %.o: %.c
 	@printf "\e[0;34mCompiling $<\n\e[0;35m"
