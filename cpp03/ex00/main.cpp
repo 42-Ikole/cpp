@@ -1,7 +1,6 @@
 
 #include "FragTrap.hpp"
 
-
 int main()
 {
 	FragTrap magikarp("Magikarp");
