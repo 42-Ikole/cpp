@@ -1,3 +1,4 @@
+
 #ifndef PONY_H
 # define PONY_H
 
@@ -5,16 +6,18 @@
 
 class Pony
 {
-    private:
-	std::string	name;
-	int			speed;
-	int			stamina;
-	int			cooldown;
-	public:
-	void    ponyOnTheHeap(void);
-	void    ponyOnTheStack(void);
+	std::string	_name;
+	int			_speed;
+	int			_stamina;
+	int			_cooldown;
+				Pony(void);
+public:
+				Pony(std::string name, int speed, int stamina, int cooldown);
+	std::string getName(void);
+	int			calcTime(void);
 };
 
-
+	void		ponyOnTheHeap(void);
+	void		ponyOnTheStack(void);
 
 #endif
