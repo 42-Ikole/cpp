@@ -6,19 +6,19 @@
 Fixed::Fixed()
 {
     std::cout << "Default constructor called\n";
-    point = 0;
+    _point = 0;
 }
 
 Fixed::Fixed(int nbr)
 {
     std::cout << "Int constructor called\n";
-	point = nbr << fraction;
+	_point = nbr << _fraction;
 }
 
 Fixed::Fixed(float nbr)
 {
     std::cout << "Float constructor called\n";
-	point = (int)roundf(nbr * (1 << fraction));
+	_point = (int)roundf(nbr * (1 << _fraction));
 }
 
 Fixed::Fixed(const Fixed &tbc)
@@ -35,26 +35,24 @@ Fixed::~Fixed()
 int		Fixed::getRawBits( void ) const
 {
     std::cout << "getRawBits called\n";
-    return point;
+    return _point;
 }
 
 void	Fixed::setRawBits(int const raw)
 {
     std::cout << "setRawBits called\n";
-    point = raw;
+    _point = raw;
 }
 
 void	Fixed::operator = (const Fixed &tbc)
 {
     std::cout << "assignation operator called\n";
-    point = tbc.getRawBits();
+    _point = tbc.getRawBits();
 }
-
 
 float   Fixed::toFloat( void ) const
 {
-    // std::cout << ((float)(1 << fraction)) << std::endl
-    return ((float)(point) / (1 << fraction));
+    return ((float)(_point) / (1 << _fraction));
 }
 
 std::ostream   &operator << (std::ostream &out, const Fixed &tbp)
@@ -65,5 +63,5 @@ std::ostream   &operator << (std::ostream &out, const Fixed &tbp)
 
 int     Fixed::toInt( void ) const
 {
-    return (point >> fraction);
+    return (_point >> _fraction);
 }
