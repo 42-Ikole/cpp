@@ -5,7 +5,7 @@
 
 void Zombie::announce()
 {
-    std::cout << "\e[5m \e[1m \e[31m(" << this->type << ")\e[0m" << this->name << ": Braaiinnsss....\n";
+    std::cout << "\e[5m\e[1m\e[31m(" << this->type << ")\e[0m" << this->name << ": Braaiinnsss....\n";
 }
 
 void Zombie::settype(std::string type)
