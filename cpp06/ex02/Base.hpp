@@ -1,6 +1,6 @@
 
-#ifndef ABASE_HPP
-# define ABASE_HPP
+#ifndef BASE_HPP
+# define BASE_HPP
 
 class Base
 {
