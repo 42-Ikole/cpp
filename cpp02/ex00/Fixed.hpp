@@ -5,12 +5,12 @@
 class Fixed
 {
 private:
-    int 				point;
-    static const int	fraction = 8;
+    int 				_point;
+    static const int	_fraction = 8;
 public:
-    Fixed();
-	Fixed(const Fixed &tbc);
-    ~Fixed();
+    		Fixed();
+			Fixed(const Fixed &tbc);
+    		~Fixed();
 	void	operator = (const Fixed &tbc);
 	int		getRawBits( void ) const;
 	void	setRawBits(int const raw);

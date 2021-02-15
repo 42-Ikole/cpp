@@ -5,13 +5,13 @@
 Fixed::Fixed()
 {
     std::cout << "Default constructor called\n";
-	point = 0;
+	_point = 0;
 }
 
 Fixed::Fixed(const Fixed &tbc)
 {
     std::cout << "Copy constructor called\n";
-	point = tbc.getRawBits();
+	_point = tbc.getRawBits();
 }
 
 Fixed::~Fixed()
@@ -22,17 +22,17 @@ Fixed::~Fixed()
 int		Fixed::getRawBits( void ) const
 {
     std::cout << "getRawBits called\n";
-    return point;
+    return _point;
 }
 
 void	Fixed::setRawBits(int const raw)
 {
     std::cout << "setRawBits called\n";
-    point = raw;
+    _point = raw;
 }
 
 void	Fixed::operator = (const Fixed &tbc)
 {
     std::cout << "assignation operator called\n";
-    point = tbc.getRawBits();
+    _point = tbc.getRawBits();
 }
