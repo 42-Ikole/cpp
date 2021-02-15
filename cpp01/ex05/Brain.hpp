@@ -7,8 +7,7 @@
 class Brain
 {
 private:
-    std::string name;
-    int         age;
+    std::string _name;
 public: 
     std::string	identify();
 };

@@ -5,10 +5,10 @@
 
 std::string	Human::identify()
 {
-    return (brain.identify());
+    return (this->_brain.identify());
 }
 
 Brain&  Human::getbrain()
 {
-    return (brain);
+    return (this->_brain);
 }

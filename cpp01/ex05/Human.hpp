@@ -8,9 +8,8 @@
 class Human
 {
 private:
-    Brain       brain;
-    std::string name;
-    int         age;
+    Brain       _brain;
+    std::string _name;
 public:
 	Brain&		getbrain();
    	std::string	identify();
