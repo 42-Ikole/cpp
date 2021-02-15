@@ -5,56 +5,55 @@
 
 Fixed::Fixed()
 {
-    // std::cout << "Default constructor called\n";
-    point = 0;
+    std::cout << "Default constructor called\n";
+    _point = 0;
 }
 
 Fixed::Fixed(int nbr)
 {
-    // std::cout << "Int constructor called\n";
-	point = nbr << fraction;
+    std::cout << "Int constructor called\n";
+	_point = nbr << _fraction;
 }
 
 Fixed::Fixed(float nbr)
 {
-    // std::cout << "Float constructor called\n";
-	point = (int)roundf(nbr * (1 << fraction));
+    std::cout << "Float constructor called\n";
+	_point = (int)roundf(nbr * (1 << _fraction));
 }
 
 Fixed::Fixed(const Fixed &tbc)
 {
-    // std::cout << "Copy constructor called\n";
+    std::cout << "Copy constructor called\n";
 	*this = tbc;
 }
 
 Fixed::~Fixed()
 {
-    //  std::cout << "Destructor called\n";
+     std::cout << "Destructor called\n";
 }
 
 int		Fixed::getRawBits( void ) const
 {
-    // std::cout << "getRawBits called\n";
-    return point;
+    std::cout << "getRawBits called\n";
+    return _point;
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-    // std::cout << "setRawBits called\n";
-    point = raw;
+    std::cout << "setRawBits called\n";
+    _point = raw;
 }
 
 void	Fixed::operator = (const Fixed &tbc)
 {
-    // std::cout << "assignation operator called\n";
-    point = tbc.getRawBits();
+    std::cout << "assignation operator called\n";
+    _point = tbc.getRawBits();
 }
 
 
 float   Fixed::toFloat( void ) const
 {
-    // std::cout << ((float)(1 << fraction)) << std::endl;
-    return ((float)(point) / (1 << fraction));
+    return ((float)(_point) / (1 << _fraction));
 }
 
 std::ostream   &operator << (std::ostream &out, const Fixed &tbp)
@@ -65,7 +64,7 @@ std::ostream   &operator << (std::ostream &out, const Fixed &tbp)
 
 int     Fixed::toInt( void ) const
 {
-    return (point >> fraction);
+    return (_point >> _fraction);
 }
 
 
@@ -121,7 +120,7 @@ float			operator / (const Fixed &fpnbr1, const Fixed &fpnbr2)
 
 float			Fixed::operator ++ ()
 {
-    ++point;
+    ++_point;
     return (toFloat());
 }
 
@@ -129,13 +128,13 @@ float			Fixed::operator ++ (int)
 {
     float tmp;
     tmp = toFloat();
-    point++;
+    _point++;
     return (tmp);
 }
 
 float			Fixed::operator -- ()
 {
-    point++;
+    _point++;
     return (toFloat());
 }
 
@@ -143,7 +142,7 @@ float			Fixed::operator -- (int)
 {
     float tmp;
     tmp = toFloat();
-    point--;
+    _point--;
     return (tmp);
 }
 
