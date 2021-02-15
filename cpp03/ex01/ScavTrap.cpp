@@ -3,71 +3,70 @@
 #include <iostream>
 #include <fstream>
 
-ScavTrap::ScavTrap(std::string newName): name(newName)
+ScavTrap::ScavTrap(std::string newName): _name(newName)
 {
-    hitPoints = 100;
-    maxHitPoints = 100;
-    energyPoints = 50;
-    maxEnergyPoints = 50;
-    level = 1;
-    meleeAttackDamage = 20;
-    rangedAttackDamage = 15;
-    armorDamageReduction = 3;
-    output.open("ScavTrap.output", std::ios::trunc);
-    attacks[0] = "Lightning bolt\n\n";
-	attacks[1] = "Scratch\n\n";
-	attacks[2] = "Growl\n\n";
-	attacks[3] = "Hyper beam\n\n";
-	attacks[4] = "Splash\n\n";
-    enemies[0] = "Mr. Mime";
-    enemies[1] = "Meowth";
-    enemies[2] = "Team rocket";
+    _hitPoints = 100;
+    _maxHitPoints = 100;
+    _energyPoints = 50;
+    _maxEnergyPoints = 50;
+    _level = 1;
+    _meleeAttackDamage = 20;
+    _rangedAttackDamage = 15;
+    _armorDamageReduction = 3;
+    _attacks[0] = "Lightning bolt";
+	_attacks[1] = "Scratch";
+	_attacks[2] = "Growl";
+	_attacks[3] = "Hyper beam";
+	_attacks[4] = "Splash";
+    _enemies[0] = "Mr. Mime";
+    _enemies[1] = "Meowth";
+    _enemies[2] = "Team rocket";
 }
 
 ScavTrap::~ScavTrap(){}
 
 void	ScavTrap::rangedAttack(std::string const & target)
 {
-	if (hitPoints == 0)
-		output << "FR4G-TP " << name << " is dead can't use ranged attack!\n\n";
+	if (_hitPoints == 0)
+		std::cout << "FR4G-TP " << _name << " is dead can't use ranged attack!\n\n";
     else
-    	output << "FR4G-TP " << name << " attacks " << target << " at range, causing " << rangedAttackDamage << " points of damage!\n\n";
+    	std::cout << "FR4G-TP " << _name << " attacks " << target << " at range, causing " << _rangedAttackDamage << " points of damage!\n\n";
 }
 
 void	ScavTrap::meleeAttack(std::string const & target)
 {
-	if (hitPoints == 0)
-		output << "FR4G-TP " << name << " is dead can't use melee attack!\n\n";
+	if (_hitPoints == 0)
+		std::cout << "FR4G-TP " << _name << " is dead can't use melee attack!\n\n";
     else
-    	output << "FR4G-TP " << name << " attacks " << target << " with a knife, causing " << meleeAttackDamage << " points of damage!\n\n";
+    	std::cout << "FR4G-TP " << _name << " attacks " << target << " with a knife, causing " << _meleeAttackDamage << " points of damage!\n\n";
 }
 
 void	ScavTrap::takeDamage(unsigned int amount)
 {
-    if (hitPoints == 0)
-        output << "FR4G-TP " << name << " is already dead, can't take more damage!\n\n";
-    else if (hitPoints - amount + armorDamageReduction <= 0) {
-        hitPoints = 0;
-        output << "FR4G-TP " << name << " died!\n\n";
+    if (_hitPoints == 0)
+        std::cout << "FR4G-TP " << _name << " is already dead, can't take more damage!\n\n";
+    else if (_hitPoints - amount + _armorDamageReduction <= 0) {
+        _hitPoints = 0;
+        std::cout << "FR4G-TP " << _name << " died!\n\n";
     } else {
-    	hitPoints -= amount + armorDamageReduction;
-		if (hitPoints < 0)
-			hitPoints = 0;
-        output << "FR4G-TP " << name << " got attacked, and took " << amount + armorDamageReduction << " points of damage!\n\n";
+    	_hitPoints -= amount + _armorDamageReduction;
+		if (_hitPoints < 0)
+			_hitPoints = 0;
+        std::cout << "FR4G-TP " << _name << " got attacked, and took " << amount + _armorDamageReduction << " points of damage!\n\n";
 	}
 }
 
 void	ScavTrap::beRepaired(unsigned int amount)
 {
-    if (hitPoints == 0)
-        output << "FR4G-TP " << name << " is dead, can't heal!\n\n";
-    else if (hitPoints == maxHitPoints)
-        output << "FR4G-TP " << name << " is already full health!\n\n";
+    if (_hitPoints == 0)
+        std::cout << "FR4G-TP " << _name << " is dead, can't heal!\n\n";
+    else if (_hitPoints == _maxHitPoints)
+        std::cout << "FR4G-TP " << _name << " is already full health!\n\n";
     else {
-        hitPoints += amount;
-        if (hitPoints > maxHitPoints)
-            hitPoints = maxHitPoints;
-        output << "FR4G-TP " << name << " healed, current health is " << hitPoints << std::endl << std::endl;
+        _hitPoints += amount;
+        if (_hitPoints > _maxHitPoints)
+            _hitPoints = _maxHitPoints;
+        std::cout << "FR4G-TP " << _name << " healed, current health is " << _hitPoints << std::endl << std::endl;
     }
 }
 
@@ -81,12 +80,12 @@ void    ScavTrap::challengeNewcomer()
         bool shouldAttack = rand() % 2;
         if (shouldAttack == 1) {
             int attack = rand() % 5;
-            output << "FR4G-TP " << name << " attacks " << enemies[enemy] << " with " << attacks[attack]; 
+            std::cout << "FR4G-TP " << _name << " attacks " << _enemies[enemy] << " with " << _attacks[attack]; 
         } else {
             int regenAmount = rand() % 100;
             beRepaired(regenAmount);
         }
-        output << "FR4G-TP " << enemies[enemy] << " attacks\n\n";
+        std::cout << "FR4G-TP " << _enemies[enemy] << " attacks\n\n";
         takeDamage(20);
     }
 }

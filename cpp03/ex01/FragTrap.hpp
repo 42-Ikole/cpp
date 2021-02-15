@@ -1,21 +1,21 @@
 #ifndef FRAGTRAP_H
 # define FRAGTRAP_H
 
-#include <string>
+# include <string>
 
 class FragTrap
 {
 private:
-    int hitPoints;
-    int maxHitPoints;
-    int energyPoints;
-    int maxEnergyPoints;
-    int level;
-    std::string name;
-    int meleeAttackDamage;
-    int rangedAttackDamage;
-    int armorDamageReduction;
-    std::string	attacks[5];
+    std::string _name;
+    int         _hitPoints;
+    int         _maxHitPoints;
+    int         _energyPoints;
+    int         _maxEnergyPoints;
+    int         _level;
+    int         _meleeAttackDamage;
+    int         _rangedAttackDamage;
+    int         _armorDamageReduction;
+    std::string	_attacks[5];
 public:
             FragTrap(std::string newName);
             ~FragTrap();
