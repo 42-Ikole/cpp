@@ -3,6 +3,26 @@
 #include "Zombie.hpp"
 #include "ZombieHorde.hpp"
 
+ZombieHorde::ZombieHorde(int number) : 
+_amount(number)
+{
+	Zombie *horde;
+
+	try {
+		horde = new Zombie[_amount];
+	}
+	catch(const std::exception& e) {
+		std::cerr << e.what() << '\n';
+		exit (0);
+	}
+	for (int i = 0; i < _amount; i++) {
+		horde[i].setname(generate_name());
+		horde[i].settype("Horde");
+	}
+	announce(_amount, horde);
+	delete[] horde;
+}
+
 void    ZombieHorde::announce(int nb, Zombie *horde)
 {
     for (int i = 0; i < nb; i++) {

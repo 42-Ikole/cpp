@@ -8,28 +8,9 @@ std::string	generate_name();
 
 class ZombieHorde
 {
-private:
-    int amount;
+    int     _amount;
 public:
-    ZombieHorde(int number): amount(number)
-    {
-        Zombie *horde;
-
-        try {
-            horde = new Zombie[amount];
-        }
-        catch(const std::exception& e) {
-            std::cerr << e.what() << '\n';
-            exit (0);
-        }
-        for (int i = 0; i < amount; i++) {
-            horde[i].setname(generate_name());
-            horde[i].settype("Horde");
-        }
-        announce(amount, horde);
-        delete[] horde;
-    }
-
+            ZombieHorde(int number);
     void    announce(int nb, Zombie *horde);
 };
 

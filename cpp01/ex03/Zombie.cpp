@@ -5,26 +5,26 @@
 
 void Zombie::announce(Zombie zombie)
 {
-    std::cout << "\e[5m \e[1m \e[31m(" << zombie.type << ")\e[0m" << zombie.name << ": Braaiinnsss....\n";
+    std::cout << "\e[5m\e[1m\e[31m(" << zombie._type << ")\e[0m" << zombie._name << ": Braaiinnsss....\n";
 }
 
 void Zombie::settype(std::string type)
 {
-	this->type = type;
+	this->_type = type;
 }
 
 void Zombie::setname(std::string name)
 {
-	this->name = name;
+	this->_name = name;
 }
 
 
 std::string Zombie::gettype(void)
 {
-	return(this->type);
+	return(this->_type);
 }
 
 std::string Zombie::getname(void)
 {
-	return(this->name);
+	return(this->_name);
 }
