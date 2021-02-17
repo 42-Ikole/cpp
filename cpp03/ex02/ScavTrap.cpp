@@ -4,6 +4,7 @@
 
 ScavTrap::ScavTrap(std::string newName): ClapTrap(newName)
 {
+    _type = "SC4V-TP";
     _hitPoints = 100;
     _maxHitPoints = 100;
     _energyPoints = 50;
@@ -37,12 +38,12 @@ void    ScavTrap::challengeNewcomer()
         bool shouldAttack = rand() % 2;
         if (shouldAttack == 1) {
             int attack = rand() % 5;
-            std::cout << "FR4G-TP " << _name << " attacks " << _enemies[enemy] << " with " << _attacks[attack]; 
+            std::cout << _type << " " << _name << " attacks " << _enemies[enemy] << " with " << _attacks[attack]; 
         } else {
             int regenAmount = rand() % 100;
             beRepaired(regenAmount);
         }
-        std::cout << "FR4G-TP " << _enemies[enemy] << " attacks\n\n";
+        std::cout << _type << " " << _enemies[enemy] << " attacks\n\n";
         takeDamage(20);
     }
 }
