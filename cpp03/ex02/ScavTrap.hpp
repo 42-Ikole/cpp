@@ -7,7 +7,6 @@
 class ScavTrap: public ClapTrap
 {
     std::string     _enemies[3];
-    std::string     _attacks[5];
 public:
             ScavTrap(std::string newName);
             ~ScavTrap();

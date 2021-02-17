@@ -15,6 +15,7 @@ protected:
     int         _meleeAttackDamage;
     int         _rangedAttackDamage;
     int         _armorDamageReduction;
+    std::string _attacks[5];
 public:
 			ClapTrap();
             ClapTrap(std::string &newName);
