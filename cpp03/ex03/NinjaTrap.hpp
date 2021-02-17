@@ -7,12 +7,12 @@
 #include <string>
 
 class NinjaTrap: public ClapTrap
-{
-private:
-    std::string     pname;
+{  
 public:
             NinjaTrap(std::string newName);
             ~NinjaTrap();
+            NinjaTrap(const NinjaTrap &tbc);
+    void    operator = (const NinjaTrap &tbc);
     void    ninjaShoebox(const NinjaTrap& ninja);
 	void    ninjaShoebox(const ScavTrap& scav);
 	void    ninjaShoebox(const FragTrap& frag);
