@@ -21,6 +21,8 @@ public:
 			ClapTrap();
             ClapTrap(std::string &newName);
             ~ClapTrap();
+            ClapTrap(const ClapTrap &tbc);
+    void    operator = (const ClapTrap &tbc);
     void	rangedAttack(std::string const & target);
     void	meleeAttack(std::string const & target);
     void	takeDamage(unsigned int amount);

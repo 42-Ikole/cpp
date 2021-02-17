@@ -10,6 +10,8 @@ class ScavTrap: public ClapTrap
 public:
             ScavTrap(std::string newName);
             ~ScavTrap();
+            ScavTrap(const ScavTrap &tbc);
+    void    operator = (const ScavTrap &tbc);
     void    challengeNewcomer();
 };
 

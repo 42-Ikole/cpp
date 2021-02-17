@@ -27,6 +27,42 @@ FragTrap::~FragTrap(){
 	std::cout << "FragTrap destruction!\n";
 }
 
+FragTrap::FragTrap(const FragTrap &tbc)
+{
+    this->_name = tbc._name;
+    this->_hitPoints = tbc._hitPoints;
+    this->_maxHitPoints = tbc._maxHitPoints;
+    this->_energyPoints = tbc._energyPoints;
+    this->_maxEnergyPoints = tbc._maxEnergyPoints;
+    this->_level = tbc._level;
+    this->_meleeAttackDamage = tbc._meleeAttackDamage;
+    this->_rangedAttackDamage = tbc._rangedAttackDamage;
+    this->_armorDamageReduction = tbc._armorDamageReduction;
+    this->_attacks[0] = tbc._attacks[0];
+    this->_attacks[1] = tbc._attacks[1];
+    this->_attacks[2] = tbc._attacks[2];
+    this->_attacks[3] = tbc._attacks[3];
+    this->_attacks[4] = tbc._attacks[4];
+}
+
+void    FragTrap::operator = (const FragTrap &tbc)
+{
+    this->_name = tbc._name;
+    this->_hitPoints = tbc._hitPoints;
+    this->_maxHitPoints = tbc._maxHitPoints;
+    this->_energyPoints = tbc._energyPoints;
+    this->_maxEnergyPoints = tbc._maxEnergyPoints;
+    this->_level = tbc._level;
+    this->_meleeAttackDamage = tbc._meleeAttackDamage;
+    this->_rangedAttackDamage = tbc._rangedAttackDamage;
+    this->_armorDamageReduction = tbc._armorDamageReduction;
+    this->_attacks[0] = tbc._attacks[0];
+    this->_attacks[1] = tbc._attacks[1];
+    this->_attacks[2] = tbc._attacks[2];
+    this->_attacks[3] = tbc._attacks[3];
+    this->_attacks[4] = tbc._attacks[4];
+}
+
 void	FragTrap::vaulthunter_dot_exe(std::string const & target)
 {
 	if (_hitPoints == 0)
