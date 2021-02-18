@@ -12,6 +12,7 @@ public:
             FragTrap(const FragTrap &tbc);
     void    operator = (const FragTrap &tbc);
     void    vaulthunter_dot_exe(std::string const & target);
+    std::string getName(void) const;
 };
 
 #endif

@@ -28,6 +28,10 @@ ScavTrap::~ScavTrap(){
     std::cout << "ScavTrap destructor\n";
 }
 
+std::string ScavTrap::getName(void) const {
+    return (this->_name);
+}
+
 ScavTrap::ScavTrap(const ScavTrap &tbc)
 {
     this->_name = tbc._name;

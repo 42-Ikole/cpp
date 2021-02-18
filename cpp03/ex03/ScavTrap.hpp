@@ -13,6 +13,7 @@ public:
             ScavTrap(const ScavTrap &tbc);
     void    operator = (const ScavTrap &tbc);
     void    challengeNewcomer();
+    std::string getName(void) const;
 };
 
 #endif

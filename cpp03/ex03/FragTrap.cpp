@@ -75,3 +75,7 @@ void	FragTrap::vaulthunter_dot_exe(std::string const & target)
 		std::cout << _type << " " << _name << " used " << _attacks[attack] << " on " << target << std::endl;
 	}
 }
+
+std::string FragTrap::getName(void) const {
+    return (this->_name);
+}
