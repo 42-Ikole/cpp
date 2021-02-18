@@ -7,11 +7,11 @@
 
 class SuperTrap: public FragTrap, public NinjaTrap
 {
-private:
-    std::string     name;
 public:
-    SuperTrap(std::string newName);
-    ~SuperTrap();
+            SuperTrap(std::string newName);
+            ~SuperTrap();
+            SuperTrap(const SuperTrap &tbc);
+    void    operator = (const SuperTrap &tbc);
 };
 
 #endif

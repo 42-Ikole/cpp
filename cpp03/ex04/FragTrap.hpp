@@ -6,13 +6,12 @@
 
 class FragTrap: virtual public ClapTrap
 {
-private:
-	std::string pname;
-    std::string	attacks[5];
 public:
-            FragTrap();
             FragTrap(std::string newName);
             ~FragTrap();
+            FragTrap(const FragTrap &tbc);
+    std::string getName(void) const;
+    void    operator = (const FragTrap &tbc);
     void    vaulthunter_dot_exe(std::string const & target);
 };
 
