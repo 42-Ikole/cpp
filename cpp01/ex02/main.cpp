@@ -7,8 +7,17 @@
 
 int main()
 {
-	ZombieEvent		zombie;
+	ZombieEvent	eskootit;
+	Zombie		*zombie = eskootit.newZombie("zombol");
+	Zombie		*zombert = eskootit.newZombie("fuckthisshitimout");
 
-	zombie.randomChump();
+	zombie->announce();
+	delete zombie;
+	zombie = eskootit.randomChump();
+	delete zombie;
+	eskootit.setZombieType(zombert);
+	zombert->announce();
+	delete  zombert;
+
 	return (0);
 }

@@ -3,11 +3,14 @@
 #include "Zombie.hpp"
 #include "ZombieHorde.hpp"
 
+ZombieHorde::~ZombieHorde()
+{
+	delete[] horde;
+}
+
 ZombieHorde::ZombieHorde(int number) : 
 _amount(number)
 {
-	Zombie *horde;
-
 	try {
 		horde = new Zombie[_amount];
 	}
@@ -20,7 +23,6 @@ _amount(number)
 		horde[i].settype("Horde");
 	}
 	announce(_amount, horde);
-	delete[] horde;
 }
 
 void    ZombieHorde::announce(int nb, Zombie *horde)

@@ -5,6 +5,6 @@ int main(void)
 {
 	ponyOnTheHeap();
 	ponyOnTheStack();
-	system("leaks a.out | grep total bytes leaked");
+	system("leaks a.out");
 	return (0);
 }

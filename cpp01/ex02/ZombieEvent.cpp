@@ -48,11 +48,11 @@ std::string	generate_name()
 	return (name);
 }
 
-void    ZombieEvent::randomChump()
+Zombie	*ZombieEvent::randomChump()
 {
     Zombie *zombie;
 	
     zombie = newZombie(generate_name());
 	zombie->announce();
-	delete zombie;
+	return (zombie);
 }

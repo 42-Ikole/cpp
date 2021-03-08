@@ -34,6 +34,7 @@ int main(int args, char **argv)
 			if (!file.eof())
 				std::cout << "getline failed" << std::endl;
 		}
+		loc = 0;
 		while (read.find(to_replace, loc) != read.npos) {
 			loc = read.find(to_replace, loc);
 			if (loc == read.npos)
