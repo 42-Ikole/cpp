@@ -15,11 +15,12 @@ RadScorpion::~RadScorpion()
 
 RadScorpion::RadScorpion(const RadScorpion &copy) : Enemy(copy.getHP(), copy.getType()) {}
 
-void 		RadScorpion::operator = (const RadScorpion &s )
+RadScorpion	&RadScorpion::operator = (const RadScorpion &s )
 {
 	if (this != &s)
 	{
 		setHP(s.getHP());
 		setType(s.getType());
 	}
+	return *this;
 }

@@ -13,13 +13,14 @@ Ice::Ice(const Ice &Ice) : AMateria("ice")
 	setXP(Ice.getXP());
 }
 
-void	Ice::operator = (const Ice &s)
+Ice	&Ice::operator = (const Ice &s)
 {
 	if (&s != this)
 	{
 		this->setType(s.getType());
 		this->setXP(s.getXP());
 	}
+	return *this;
 }
 
 AMateria*	Ice::clone() const

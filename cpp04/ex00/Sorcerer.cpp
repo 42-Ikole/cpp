@@ -16,13 +16,14 @@ Sorcerer::~Sorcerer()
 
 Sorcerer::Sorcerer(const Sorcerer &copy) : _name(copy._name), _title(copy._title){}
 
-void 		Sorcerer::operator = (const Sorcerer &s )
+Sorcerer	&Sorcerer::operator = (const Sorcerer &s )
 {
 	if (&s != this)
 	{
 		this->_name = s._name;
 		this->_title = s._title;
 	}
+	return *this;
 }
 
 std::string	Sorcerer::getName() const

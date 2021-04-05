@@ -10,7 +10,7 @@ PlasmaRifle::~PlasmaRifle() {}
 
 PlasmaRifle::PlasmaRifle(const PlasmaRifle &copy) : AWeapon(copy.getName(), copy.getApCost(), copy.getDamage()) {}
 
-void 		PlasmaRifle::operator = (const PlasmaRifle &s )
+PlasmaRifle	&PlasmaRifle::operator = (const PlasmaRifle &s )
 {
 	if (&s != this)
 	{
@@ -18,6 +18,7 @@ void 		PlasmaRifle::operator = (const PlasmaRifle &s )
 		setDamage(s.getDamage());
 		setApCost(s.getApCost());
 	}
+	return *this;
 }
 
 void	PlasmaRifle::attack() const

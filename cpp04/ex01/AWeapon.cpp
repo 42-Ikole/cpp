@@ -12,7 +12,7 @@ AWeapon::~AWeapon() {}
 
 AWeapon::AWeapon(const AWeapon &copy) : _Name(copy._Name), _Damage(copy._Damage), _ApCost(copy._ApCost){}
 
-void 		AWeapon::operator = (const AWeapon &s )
+AWeapon	&AWeapon::operator = (const AWeapon &s )
 {
 	if (&s != this)
 	{
@@ -20,6 +20,7 @@ void 		AWeapon::operator = (const AWeapon &s )
 		this->_Damage = s._Damage;
 		this->_ApCost = s._ApCost;
 	}
+	return *this;
 }
 
 std::string  AWeapon::getName() const

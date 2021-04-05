@@ -10,7 +10,7 @@ PowerFist::~PowerFist() {}
 
 PowerFist::PowerFist(const PowerFist &copy) : AWeapon(copy.getName(), copy.getApCost(), copy.getDamage()) {}
 
-void 		PowerFist::operator = (const PowerFist &s )
+PowerFist	&PowerFist::operator = (const PowerFist &s )
 {
 	if (&s != this)
 	{
@@ -18,6 +18,7 @@ void 		PowerFist::operator = (const PowerFist &s )
 		setDamage(s.getDamage());
 		setApCost(s.getApCost());
 	}
+	return *this;
 }
 
 void	PowerFist::attack() const

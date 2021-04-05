@@ -17,7 +17,7 @@ class Character
 		Character(std::string const & name);
 		~Character();
 		Character(const Character &copy);
-		void	operator = (const Character &s );
+		Character	&operator = (const Character &s );
 		void	recoverAP();
 		void	equip(AWeapon* weapon);
 		void	attack(Enemy* enemy);

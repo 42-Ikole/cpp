@@ -15,7 +15,7 @@ class AMateria
 		AMateria(std::string const & type);
 		virtual ~AMateria();
 		AMateria(const AMateria &amateria);
-		void	operator = (const AMateria &amateria);
+		AMateria	&operator = (const AMateria &amateria);
 		std::string const & getType() const; //Returns the materia type
 		void				setType(std::string type);
 		unsigned int 		getXP() const; //Returns the Materia's XP

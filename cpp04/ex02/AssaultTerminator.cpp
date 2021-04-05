@@ -13,8 +13,6 @@ AssaultTerminator::~AssaultTerminator()
 }
 
 AssaultTerminator::AssaultTerminator(const AssaultTerminator &AssaultTerminator) {}
-	
-void	AssaultTerminator::operator = (const AssaultTerminator &s) {}
 
 AssaultTerminator *AssaultTerminator::clone() const
 {

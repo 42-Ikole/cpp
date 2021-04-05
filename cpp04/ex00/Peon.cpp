@@ -14,12 +14,17 @@ Peon::~Peon()
 	std::cout << "Bleuark..." << std::endl;
 }
 
-Peon::Peon(const Peon &copy) : Victim(copy){}
+Peon::Peon(const Peon &copy) : Victim(copy)
+{
+	if (&copy != this)
+		this->_name = copy.getName();
+}
 
-void 		Peon::operator = (const Peon &s )
+Peon 		&Peon::operator = (const Peon &s )
 {
 	if (&s != this)
 		this->_name = s.getName();
+	return *this;
 }
 
 void		Peon::getPolymorphed() const

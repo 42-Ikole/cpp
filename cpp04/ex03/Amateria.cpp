@@ -12,13 +12,14 @@ AMateria::AMateria(const AMateria &amateria)
 	this->type = amateria.getType();
 }
 
-void	AMateria::operator = (const AMateria &amateria)
+AMateria	&AMateria::operator = (const AMateria &amateria)
 {
 	if (&amateria != this)
 	{
 		this->xp = amateria.getXP();
 		this->type = amateria.getType();
 	}
+	return *this;
 }
 
 std::string const & AMateria::getType() const

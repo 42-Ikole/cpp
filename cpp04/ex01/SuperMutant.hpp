@@ -13,7 +13,7 @@ class SuperMutant : public Enemy
 		SuperMutant();
 		~SuperMutant();
 		SuperMutant(const SuperMutant &copy);
-		void 		operator = (const SuperMutant &s );
+		SuperMutant	&operator = (const SuperMutant &s );
 		void	takeDamage(int damage);
 };
 

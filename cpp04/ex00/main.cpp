@@ -7,10 +7,16 @@
 
 int main()
 {
-	// Person Person("bigb", "is altijd te laat");
-	// Sorcerer Sorcerer("tim", "thetatman");
-	// Sorcerer.Introduce();
-	// sorcerer tim("tim", "the tatman");
+	Sorcerer bigb("bigb", "is altijd te laat");
+	Peon tim("tim");
+	Peon zazzle("zazzle");
+	Peon irrelevant("Irrelevant");
+	std::cout << bigb << tim;
+
+	tim = zazzle = irrelevant;
+	std::cout << tim <<  zazzle << irrelevant;
+	
+	std::cout << std::endl;
 
 	Sorcerer robert("Robert", "the Magnificent");
 	Victim jim("Jimmy");

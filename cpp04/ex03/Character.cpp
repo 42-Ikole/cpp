@@ -19,7 +19,7 @@ Character::Character(const Character &character)
 		this->inv[i] = character.inv[i];
 }
 
-void	Character::operator = (const Character &character)
+Character	&Character::operator = (const Character &character)
 {
 	this->name = character.name;
 	for (int i = 0; i < 4; i++)

@@ -11,13 +11,14 @@ Enemy::~Enemy() {}
 
 Enemy::Enemy(const Enemy &copy) : _Type(copy._Type), _HP(copy._HP) {}
 
-void 		Enemy::operator = (const Enemy &s )
+Enemy 		&Enemy::operator = (const Enemy &s )
 {
 	if (&s != this)
 	{
 		_Type = s._Type;
 		_HP = s._HP;
 	}
+	return *this;
 }
 
 std::string Enemy::getType() const

@@ -13,13 +13,14 @@ Cure::Cure(const Cure &Cure) : AMateria("cure")
 	setXP(Cure.getXP());
 }
 
-void	Cure::operator = (const Cure &s)
+Cure	&Cure::operator = (const Cure &s)
 {
 	if (&s != this)
 	{
 		this->setType(s.getType());
 		this->setXP(s.getXP());
 	}
+	return *this;
 }
 
 AMateria*	Cure::clone() const

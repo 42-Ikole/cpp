@@ -18,7 +18,7 @@ Character::~Character() {}
 
 Character::Character(const Character &copy) : _Name(copy._Name), _AP(copy._AP), _Weapon(copy._Weapon) {}
 
-void Character::operator = (const Character &s )
+Character &Character::operator = (const Character &s )
 {
 	if (this != &s)
 	{
@@ -26,6 +26,7 @@ void Character::operator = (const Character &s )
 		_AP = s._AP;
 		_Weapon = s._Weapon;
 	}
+	return *this;
 }
 
 void Character::recoverAP()

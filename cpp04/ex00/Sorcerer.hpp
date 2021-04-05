@@ -18,7 +18,7 @@ class Sorcerer
 		Sorcerer(std::string n, std::string t);
 		~Sorcerer();
 		Sorcerer(const Sorcerer &copy);
-		void 		operator = (const Sorcerer &s );
+		Sorcerer 	&operator = (const Sorcerer &s );
 		std::string	getName() const;
 		std::string	getTitle() const;
 		void 		polymorph(Victim const &target) const;

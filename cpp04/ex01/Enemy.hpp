@@ -6,7 +6,7 @@
 
 class Enemy
 {
-	private:
+	protected:
 		std::string _Type;
 		int _HP;
 		Enemy();
@@ -14,7 +14,7 @@ class Enemy
 		Enemy(int hp, std::string const & type);
 		virtual ~Enemy();
 		Enemy(const Enemy &copy);
-		void 		operator = (const Enemy &s );
+		Enemy	&operator = (const Enemy &s );
 		std::string virtual getType() const;
 		void virtual setType(std::string type);
 		int getHP() const;

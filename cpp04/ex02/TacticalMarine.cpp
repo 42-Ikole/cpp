@@ -13,8 +13,7 @@ TacticalMarine::~TacticalMarine()
 }
 
 TacticalMarine::TacticalMarine(const TacticalMarine &TacticalMarine) {}
-	
-void	TacticalMarine::operator = (const TacticalMarine &s) {}
+
 
 ISpaceMarine *TacticalMarine::clone() const
 {

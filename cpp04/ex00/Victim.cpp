@@ -15,7 +15,7 @@ Victim::~Victim()
 
 Victim::Victim(const Victim &copy) : _name(copy._name){}
 
-void 		Victim::operator = (const Victim &s )
+Victim	&Victim::operator = (const Victim &s )
 {
 	if (&s != this)
 		this->_name = s._name;

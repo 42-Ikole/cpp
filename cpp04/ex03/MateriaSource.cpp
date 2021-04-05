@@ -17,13 +17,14 @@ MateriaSource::MateriaSource(const MateriaSource &ms)
 		this->learned[i] = ms.learned[i];
 }
 
-void	MateriaSource::operator = (const MateriaSource &s)
+MateriaSource	&MateriaSource::operator = (const MateriaSource &s)
 {
 	if (&s != this)
 	{
 		for (int i = 0; i < 4; i++)
 			this->learned[i] = s.learned[i];
 	}
+	return *this;
 }
 
 void		MateriaSource::learnMateria(AMateria* toLearn)

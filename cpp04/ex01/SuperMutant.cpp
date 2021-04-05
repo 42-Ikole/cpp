@@ -15,13 +15,14 @@ SuperMutant::~SuperMutant()
 
 SuperMutant::SuperMutant(const SuperMutant &copy) : Enemy(copy.getHP(), copy.getType()) {}
 
-void 		SuperMutant::operator = (const SuperMutant &s )
+SuperMutant	&SuperMutant::operator = (const SuperMutant &s )
 {
 	if (this != &s)
 	{
 		setHP(s.getHP());
 		setType(s.getType());
 	}
+	return *this;
 }
 
 void SuperMutant::takeDamage(int damage)

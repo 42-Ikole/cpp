@@ -7,12 +7,11 @@
 class TacticalMarine : public ISpaceMarine
 {
 private:
-	
+	void	operator = (const TacticalMarine &s);
 public:
 	TacticalMarine();
 	~TacticalMarine();
 	TacticalMarine(const TacticalMarine &TacticalMarine);
-	void	operator = (const TacticalMarine &s);
 	ISpaceMarine *clone() const;
 	void battleCry() const;
 	void rangedAttack() const;

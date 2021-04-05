@@ -31,11 +31,11 @@ Squad::Squad(const Squad &squad)
 
 }
 
-void Squad::operator = (const Squad &s)
+Squad& Squad::operator = (const Squad &s)
 {
 	if (&s != this)
 	{
-		delete this;
+		delete this->_Marines;
 		
 		_Amount = s._Amount;
 		_Marines = new (std::nothrow) ISpaceMarine *[_Amount + 1];
@@ -47,6 +47,7 @@ void Squad::operator = (const Squad &s)
 		for (int i = 0; i < _Amount; i++)
 			_Marines[i] = s._Marines[i];
 	}
+	return *this;
 }
 
 int Squad::getCount() const

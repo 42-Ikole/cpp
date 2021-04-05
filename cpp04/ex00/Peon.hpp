@@ -13,7 +13,7 @@ class Peon : public Victim
 	public:
 		Peon(std::string n);
 		~Peon();
-		void 		operator = (const Peon &s );
+		Peon	&operator = (const Peon &s );
 		Peon(const Peon &copy);
 		void		getPolymorphed() const;
 };
