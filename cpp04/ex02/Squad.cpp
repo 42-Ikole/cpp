@@ -42,7 +42,7 @@ Squad& Squad::operator = (const Squad &s)
 		if (!_Marines)
 		{
 			std::cout << "Allocation failed!" << std::endl;
-			return ;
+			exit (1);
 		}
 		for (int i = 0; i < _Amount; i++)
 			_Marines[i] = s._Marines[i];

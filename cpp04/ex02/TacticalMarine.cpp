@@ -12,7 +12,10 @@ TacticalMarine::~TacticalMarine()
 	std::cout << "Aaargh..." << std::endl;
 }
 
-TacticalMarine::TacticalMarine(const TacticalMarine &TacticalMarine) {}
+TacticalMarine::TacticalMarine(const TacticalMarine &TacticalMarine)
+{
+	(void)TacticalMarine;
+}
 
 
 ISpaceMarine *TacticalMarine::clone() const

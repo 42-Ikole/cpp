@@ -12,7 +12,10 @@ AssaultTerminator::~AssaultTerminator()
 	std::cout << "I’ll be back..." << std::endl;
 }
 
-AssaultTerminator::AssaultTerminator(const AssaultTerminator &AssaultTerminator) {}
+AssaultTerminator::AssaultTerminator(const AssaultTerminator &AssaultTerminator)
+{
+	(void) AssaultTerminator;
+}
 
 AssaultTerminator *AssaultTerminator::clone() const
 {

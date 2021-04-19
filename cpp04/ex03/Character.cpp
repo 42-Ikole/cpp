@@ -24,6 +24,7 @@ Character	&Character::operator = (const Character &character)
 	this->name = character.name;
 	for (int i = 0; i < 4; i++)
 		this->inv[i] = character.inv[i];
+	return *this;
 }
 
 std::string const & Character::getName() const

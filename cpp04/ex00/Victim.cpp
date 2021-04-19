@@ -19,8 +19,8 @@ Victim	&Victim::operator = (const Victim &s )
 {
 	if (&s != this)
 		this->_name = s._name;
+	return *this;
 }
-
 
 void		Victim::getPolymorphed() const
 {
