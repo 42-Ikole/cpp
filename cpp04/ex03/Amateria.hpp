@@ -7,7 +7,7 @@ class ICharacter;
 
 class AMateria
 {
-	private:
+	protected:
 		unsigned int	xp;
 		std::string		type;
 		AMateria();
@@ -16,9 +16,9 @@ class AMateria
 		virtual ~AMateria();
 		AMateria(const AMateria &amateria);
 		AMateria	&operator = (const AMateria &amateria);
-		std::string const & getType() const; //Returns the materia type
+		std::string const & getType() const;
 		void				setType(std::string type);
-		unsigned int 		getXP() const; //Returns the Materia's XP
+		unsigned int 		getXP() const; 
 		void				setXP(int xp);
 		virtual AMateria*	clone() const = 0;
 		virtual void		use(ICharacter& target);
