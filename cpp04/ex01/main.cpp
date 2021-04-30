@@ -25,6 +25,15 @@ int main()
 	std::cout << *me;
 	me->attack(b);
 	std::cout << *me;
-	system("leaks a.out");
+
+	SuperMutant *SM = new SuperMutant();
+	std::cout << SM->getType() << " (" << SM->getHP() << ") " << std::endl;
+	me->attack(SM);
+	std::cout << SM->getHP();
+	SM->takeDamage(152);
+	std::cout << std::endl << std::endl;
+
+
+	system("leaks a.out | grep 'leaks for'");
 	return 0;
 }
