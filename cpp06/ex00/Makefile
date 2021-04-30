@@ -3,8 +3,10 @@ NAME = convert
 
 SRCS = main.cpp PrintInput.cpp
 
-all: $(NAME)
+$(NAME): $(SRCS)
 	clang++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
+
+all: $(NAMe)
 
 test: all
 	./convert 65

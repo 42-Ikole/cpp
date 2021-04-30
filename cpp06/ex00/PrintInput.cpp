@@ -80,7 +80,7 @@ void	PrintInput::printChar() const
 void	PrintInput::printInt() const
 {
 	std::cout << "Int: ";
-	if (isLiteral() || isValidInput() == false)
+	if (isLiteral() || isValidInput() == false || this->p_dnb > (double)INT_MAX || this->p_dnb < (double)INT_MIN)
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << p_nb << std::endl;
@@ -89,10 +89,10 @@ void	PrintInput::printInt() const
 void	PrintInput::printFloat() const
 {
 	std::cout << "Float: ";
-	if (isValidInput() == false && !isLiteral())
-		std::cout << "impossible" << std::endl;
-	else	
+	if (isLiteral() || (isValidInput() == true && this->p_dnb < std::numeric_limits<float>::max() && this->p_dnb > std::numeric_limits<float>::min()))
 		std::cout << static_cast<float>(p_dnb) << "f" << std::endl;
+	else
+		std::cout << "impossible" << std::endl;
 }
 
 void	PrintInput::printDouble() const
