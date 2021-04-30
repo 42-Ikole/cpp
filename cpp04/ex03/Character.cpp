@@ -1,6 +1,7 @@
 
 #include "Character.hpp"
 #include <string>
+#include <iostream>
 
 Character::Character(std::string _name) : name(_name)
 {
@@ -55,4 +56,6 @@ void Character::use(int idx, ICharacter& target)
 {
 	if (idx >= 0 && idx < 4 && this->inv[idx])
 		this->inv[idx]->use(target);
+	else
+		std::cout << "WHOOPSIES Unable to use that slot!" << std::endl;
 }
