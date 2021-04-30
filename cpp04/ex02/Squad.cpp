@@ -9,43 +9,40 @@ Squad::Squad()
 	_Marines = NULL;
 }
 
-Squad::~Squad()
+void Squad::yeet(void)
 {
 	for (int i = 0; i < _Amount; i++)
 		delete _Marines[i];
 	delete [] _Marines;
 }
 
+Squad::~Squad()
+{
+	yeet();
+}
+
 Squad::Squad(const Squad &squad)
 {
-	_Amount = squad._Amount;
-	
-	_Marines = new (std::nothrow) ISpaceMarine *[_Amount + 1];
-	if (!_Marines)
-	{
-		std::cout << "Allocation failed!" << std::endl;
-		return ;
-	}
-	for (int i = 0; i < _Amount; i++)
-		_Marines[i] = squad._Marines[i];
-
+	_Amount = 0;
+	*this = squad;
 }
 
 Squad& Squad::operator = (const Squad &s)
 {
 	if (&s != this)
 	{
-		delete this->_Marines;
+		if (_Amount > 0)
+			yeet();
 		
 		_Amount = s._Amount;
-		_Marines = new (std::nothrow) ISpaceMarine *[_Amount + 1];
+		_Marines = new (std::nothrow) ISpaceMarine *[_Amount];
 		if (!_Marines)
 		{
 			std::cout << "Allocation failed!" << std::endl;
 			exit (1);
 		}
 		for (int i = 0; i < _Amount; i++)
-			_Marines[i] = s._Marines[i];
+			_Marines[i] = s._Marines[i]->clone();
 	}
 	return *this;
 }

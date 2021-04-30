@@ -12,7 +12,7 @@ public:
 	AssaultTerminator();
 	~AssaultTerminator();
 	AssaultTerminator(const AssaultTerminator &AssaultTerminator);
-	AssaultTerminator *clone() const;
+	ISpaceMarine *clone() const;
 	void	battleCry() const;
 	void	rangedAttack() const;
 	void	meleeAttack() const;

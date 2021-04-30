@@ -10,6 +10,7 @@ class Squad : public ISquad
 	private:
 		int				_Amount;
 		ISpaceMarine	**_Marines;
+		void yeet(void);
 	public:
 		Squad();
 		~Squad();

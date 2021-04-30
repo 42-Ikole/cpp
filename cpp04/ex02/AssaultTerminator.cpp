@@ -17,9 +17,9 @@ AssaultTerminator::AssaultTerminator(const AssaultTerminator &AssaultTerminator)
 	(void) AssaultTerminator;
 }
 
-AssaultTerminator *AssaultTerminator::clone() const
+ISpaceMarine *AssaultTerminator::clone() const
 {
-	AssaultTerminator* clone = new AssaultTerminator;
+	AssaultTerminator* clone = new AssaultTerminator();
 	return clone;
 }
 
