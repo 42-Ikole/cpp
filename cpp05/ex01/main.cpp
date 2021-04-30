@@ -21,6 +21,13 @@ int main(void)
 	catch (const std::exception  &msg) {
 		std::cout << msg.what() << std::endl;
 	}
+	try {
+		Bureaucrat *HIGH = new Bureaucrat("High", 170);
+	} catch (const std::exception  &msg) {
+		std::cout << msg.what() << std::endl;
+	}
 
+	std::cout << std::endl << std::endl;
+	system("leaks a.out | grep 'leaks for'");
 	return 0;
 }
