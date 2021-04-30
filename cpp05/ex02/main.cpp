@@ -78,6 +78,7 @@ int main(void)
 		std::cout << msg.what() << std::endl;
 	}
 
-
+	std::cout << std::endl << std::endl;
+	system("leaks a.out | grep 'leaks for'");
 	return 0;
 }
