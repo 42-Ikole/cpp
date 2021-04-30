@@ -80,6 +80,6 @@ int main(void)
 	}
 
 	std::cout << std::endl << std::endl;
-	system("leaks a.out");
+	system("leaks a.out | grep 'leaks for'");
 	return 0;
 }
