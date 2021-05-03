@@ -5,13 +5,24 @@
 #include <iomanip>
 
 
-// fix die overflows niffau
+static bool	isCharLitteral(char *str)
+{
+	if (str[1] == '\0' && (str[0] <= '0' || str[0] >= '9'))
+		return (true);
+	return (false);
+}
 
 PrintInput::PrintInput(char *str)
 {
 	this->p_input = str;
+
+	if (isCharLitteral(str)) {
+		p_nb = static_cast<int>(str[0]);
+		p_dnb = static_cast<double>(str[0]);
+	} else {
 	this->p_nb = atoi(str);
 	this->p_dnb = atof(str);
+	}
 }
 
 PrintInput::~PrintInput()
@@ -48,6 +59,8 @@ bool	PrintInput::isValidInput() const
 {
 	int start = 0;
 
+	if (isCharLitteral(this->p_input))
+		return true;
 	while ((this->p_input[start] >= 9 && this->p_input[start] <= 13) || this->p_input[start] == ' ')
 		start++;
 	if (this->p_input[start] == '+' || this->p_input[start] == '-')
@@ -80,7 +93,7 @@ void	PrintInput::printChar() const
 void	PrintInput::printInt() const
 {
 	std::cout << "Int: ";
-	if (isLiteral() || isValidInput() == false || this->p_dnb > (double)INT_MAX || this->p_dnb < (double)INT_MIN)
+	if (isLiteral() || isValidInput() == false || this->p_dnb > static_cast<double>(INT_MAX) || this->p_dnb < static_cast<double>(INT_MIN))
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << p_nb << std::endl;
@@ -89,10 +102,10 @@ void	PrintInput::printInt() const
 void	PrintInput::printFloat() const
 {
 	std::cout << "Float: ";
-	if (isLiteral() || (isValidInput() == true && this->p_dnb < std::numeric_limits<float>::max() && this->p_dnb > std::numeric_limits<float>::min()))
-		std::cout << static_cast<float>(p_dnb) << "f" << std::endl;
-	else
+	if ((isLiteral() == false && isCharLitteral(this->p_input) == false && isValidInput() == false) || this->p_dnb > (std::numeric_limits<float>::max()) || this->p_dnb < -(std::numeric_limits<float>::max()))
 		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<float>(p_dnb) << "f" << std::endl;
 }
 
 void	PrintInput::printDouble() const
