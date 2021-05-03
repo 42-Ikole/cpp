@@ -6,6 +6,7 @@
 #include "ICharacter.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "Minigun.hpp"
 #include <iostream>
 
 int main()
@@ -30,6 +31,14 @@ int main()
 	me->use(1, *bob);
 	me->equip(src->createMateria("ice"));
 	me->use(1, *bob);
+
+
+	src->learnMateria(new Minigun());
+	AMateria* brrr = src->createMateria("Minigun");
+	me->equip(brrr);
+	me->use(2, *bob);
+	
+	src->createMateria("VERY COOL 42 SUBJECTS");
 	
 	delete bob;
 	delete me;
