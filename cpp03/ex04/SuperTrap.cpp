@@ -1,3 +1,4 @@
+
 #include "SuperTrap.hpp"
 #include <string>
 #include <iostream>
@@ -21,7 +22,7 @@ SuperTrap::SuperTrap(std::string newName): FragTrap(newName), NinjaTrap(newName)
 	_attacks[4] = "Splash";
 }
 
-SuperTrap::~SuperTrap(){
+SuperTrap::~SuperTrap() {
     std::cout << "SuperTrap destructor\n";
 }
 
