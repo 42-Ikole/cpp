@@ -50,7 +50,7 @@ void Character::equip(AWeapon* weapon)
 
 void Character::attack(Enemy* enemy)
 {
-	if (!_Weapon || _AP < _Weapon->getApCost() || enemy->getHP() == 0)
+	if (!_Weapon || _AP < _Weapon->getApCost() || enemy->getHP() == 0 || _Weapon->getApCost() < 0)
 		return ;
 	_AP -= _Weapon->getApCost();
 	std::cout << _Name << " attacks " << enemy->getType() << " with a " << _Weapon->getName() << std::endl;
