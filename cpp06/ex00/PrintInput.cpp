@@ -12,6 +12,20 @@ static bool	isCharLitteral(char *str)
 	return (false);
 }
 
+static int getDecimalLength(char *str)
+ {
+	int i = 0;
+
+	while (str[i] && str[i] != '.')
+		i++;
+	int dp = i + 1;
+	while (str[dp] && str[dp] >= '0' && str[dp] <= '9')
+		dp++;
+	if (dp == i + 1)
+		return (1);
+	return dp - i - 1;
+ }
+
 PrintInput::PrintInput(char *str)
 {
 	this->p_input = str;
@@ -72,7 +86,7 @@ bool	PrintInput::isValidInput() const
 
 void	PrintInput::PrintNumbers() const
 {
-	std::cout << std::setprecision(1) << std::fixed;
+	std::cout << std::setprecision(getDecimalLength(this->p_input)) << std::fixed;
 	this->printChar();
 	this->printInt();
 	this->printFloat();
