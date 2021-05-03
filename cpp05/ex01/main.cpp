@@ -17,16 +17,23 @@ int main(void)
 		std::cout << *one;
 		std::cout << *newbie;
 		std::cout << *two;
+		delete dude;
+		delete newbie;
+		delete one;
+		delete two;
 	}
 	catch (const std::exception  &msg) {
 		std::cout << msg.what() << std::endl;
 	}
 	try {
-		Bureaucrat *HIGH = new Bureaucrat("High", 170);
+		Bureaucrat *Low = new Bureaucrat("Low", 170);
+		std::cout << Low;
 	} catch (const std::exception  &msg) {
 		std::cout << msg.what() << std::endl;
 	}
+	try {
 
+	}
 	std::cout << std::endl << std::endl;
 	system("leaks a.out | grep 'leaks for'");
 	return 0;
