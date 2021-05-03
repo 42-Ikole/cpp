@@ -31,7 +31,7 @@ std::ostream &operator<<(std::ostream &o, const Awesome &a)
 
 void	multiply(int &i)
 {
-	i *= 2;
+	i <<= 2;
 }
 
 void	prnt(Awesome &a)

@@ -1,10 +1,12 @@
 
-NAME = a.out
+NAME = serialize
 
 SRCS = main.cpp Serialization.cpp
 
+$(NAME): $(SRCS)
+	clang++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
+
 all: $(NAME)
-	clang++ -Wall -Wextra -Werror $(SRCS)
 
 re: fclean all
 

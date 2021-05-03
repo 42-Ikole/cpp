@@ -49,6 +49,6 @@ void	test(void)
 int		main()
 {
 	test();
-	system("leaks a.out");
+	system("leaks array | grep 'leaks for'");
 	return (0);
 }

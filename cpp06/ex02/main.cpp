@@ -20,7 +20,7 @@ Base * generate(void)
 	}
 	else
 	{
-		std::cout << "Chosen type = B" << std::endl;
+		std::cout << "Chosen type = C" << std::endl;
 		return new C;
 	}
 }

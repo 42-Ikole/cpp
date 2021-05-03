@@ -9,12 +9,9 @@ int main(void)
 
 	Data *data = deserialize(random);
 	
-	std::cout << "deserialized data: " << std::endl <<
-		"-----------------------" << std::endl <<
-		"s1 : " << data->s1 << std::endl <<
-		"n  : " << data->n << std::endl <<
-		"s2 : " << data->s2 << std::endl;
+	std::cout << "deserialized data: " << std::endl;
+	printData(data);
 	delete data;
-	// system("leaks a.out");
+	system("leaks serialize | grep 'leaks for'");
 	return 0;
 }

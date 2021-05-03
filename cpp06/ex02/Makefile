@@ -1,10 +1,12 @@
 
-NAME = a.out
+NAME = ABC
 
-SRCS = main.cpp
+SRCS = main.cpp Base.cpp
+
+$(NAME): $(SRCS)
+	clang++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
 all: $(NAME)
-	clang++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
 re: fclean all
 

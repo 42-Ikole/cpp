@@ -3,6 +3,15 @@
 #include <iostream>
 #include <string>
 
+
+void	printData(Data *data)
+{
+	std::cout <<	"-----------------------" << std::endl <<
+					"s1 : " << data->s1 << std::endl <<
+					"n  : " << data->n << std::endl <<
+					"s2 : " << data->s2 << std::endl << std::endl;;
+}
+
 static std::string	randomString()
 {
 	std::string name;
@@ -29,12 +38,9 @@ void * serialize(void)
 	ret->s1 = randomString();
 	ret->n = rand();
 	ret->s2 = randomString();
-	std::cout << "serialized data: " << std::endl <<
-		"-----------------------" << std::endl <<
-		"s1 : " << ret->s1 << std::endl <<
-		"n  : " << ret->n << std::endl <<
-		"s2 : " << ret->s2 << std::endl << std::endl;;
-	return ret;
+	std::cout << "serialized data: " << std::endl;
+	printData(ret);
+	return reinterpret_cast<void*>(ret);
 }
 
 Data * deserialize(void * raw)

@@ -12,7 +12,8 @@ struct Data
 	std::string s2;
 };
 
-Data * deserialize(void * raw);
-void * serialize(void);
+Data *	deserialize(void * raw);
+void *	serialize(void);
+void	printData(Data *data);
 
 #endif 
