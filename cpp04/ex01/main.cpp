@@ -5,6 +5,8 @@
 #include "RadScorpion.hpp"
 #include "SuperMutant.hpp"
 #include "PowerFist.hpp"
+#include "Minigun.hpp"
+#include "Arnold.hpp"
 #include <iostream>
 
 int main()
@@ -33,7 +35,16 @@ int main()
 	SM->takeDamage(152);
 	std::cout << std::endl << std::endl;
 
-
+	Enemy *mvp = new Arnold();
+	AWeapon *brrrr = new Minigun();
+	me->equip(brrrr);
+	for (int i = 0; i < 7; i++) {
+		for (int j = 0; j < 4; j++) {
+			me->recoverAP();
+		}
+		me->attack(mvp);
+		std::cout << "Arnold is now: " << mvp->getHP() << "HP" << std::endl;
+	}
 	system("leaks a.out | grep 'leaks for'");
 	return 0;
 }
