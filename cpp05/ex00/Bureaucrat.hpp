@@ -14,7 +14,7 @@ class Bureaucrat
 		Bureaucrat();
 	public:
 		Bureaucrat(const std::string name, const int grade);
-		~Bureaucrat();
+		virtual ~Bureaucrat();
 		Bureaucrat(const Bureaucrat &copy);
 		Bureaucrat & operator = (const Bureaucrat &s);
 		std::string getName() const;

@@ -17,7 +17,7 @@ class PrintInput
 		bool	isValidInput() const;
 	public:
 		PrintInput(char *str);
-		~PrintInput();
+		virtual ~PrintInput();
 		PrintInput(const PrintInput &copy);
 		PrintInput & operator = (const PrintInput &s);
 		void	PrintNumbers() const;

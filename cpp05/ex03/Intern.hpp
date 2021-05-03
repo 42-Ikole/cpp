@@ -13,7 +13,7 @@ class Intern
 		int	arrLength(AForm **choices);
 	public:
 		Intern();
-		~Intern();
+		virtual ~Intern();
 
 		AForm*	makeForm(std::string form, std::string target);
 	

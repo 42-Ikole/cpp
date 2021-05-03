@@ -10,7 +10,7 @@ private:
 	void	operator = (const TacticalMarine &s);
 public:
 	TacticalMarine();
-	~TacticalMarine();
+	virtual ~TacticalMarine();
 	TacticalMarine(const TacticalMarine &TacticalMarine);
 	ISpaceMarine *clone() const;
 	void battleCry() const;

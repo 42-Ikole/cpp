@@ -15,7 +15,7 @@ class Character
 		Character();
 	public:
 		Character(std::string const & name);
-		~Character();
+		virtual ~Character();
 		Character(const Character &copy);
 		Character	&operator = (const Character &s );
 		void	recoverAP();

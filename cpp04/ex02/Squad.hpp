@@ -13,7 +13,7 @@ class Squad : public ISquad
 		void yeet(void);
 	public:
 		Squad();
-		~Squad();
+		virtual ~Squad();
 		Squad(const Squad &squad);
 		Squad	&operator = (const Squad &s);
 		int getCount() const;

@@ -16,7 +16,7 @@ class Sorcerer
 		std::string _title;
 	public:
 		Sorcerer(std::string n, std::string t);
-		~Sorcerer();
+		virtual ~Sorcerer();
 		Sorcerer(const Sorcerer &copy);
 		Sorcerer 	&operator = (const Sorcerer &s );
 		std::string	getName() const;

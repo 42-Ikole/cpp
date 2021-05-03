@@ -10,7 +10,7 @@ private:
 	void	operator = (const AssaultTerminator &s);
 public:
 	AssaultTerminator();
-	~AssaultTerminator();
+	virtual ~AssaultTerminator();
 	AssaultTerminator(const AssaultTerminator &AssaultTerminator);
 	ISpaceMarine *clone() const;
 	void	battleCry() const;

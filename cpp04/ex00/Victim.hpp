@@ -13,7 +13,7 @@ class Victim
 		std::string _name;
 	public:
 		Victim(std::string n);
-		~Victim();
+		virtual ~Victim();
 		Victim(const Victim &copy);
 		Victim 			&operator = (const Victim &s );
 		std::string		getName() const;

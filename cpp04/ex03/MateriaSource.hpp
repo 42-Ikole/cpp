@@ -10,7 +10,7 @@ class MateriaSource : public IMateriaSource
 		AMateria *learned[4];
 	public:
 		MateriaSource();
-		~MateriaSource();
+		virtual ~MateriaSource();
 		MateriaSource(const MateriaSource &ms);
 		MateriaSource	&operator = (const MateriaSource &s);
 		void		learnMateria(AMateria* toLearn);
