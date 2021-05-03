@@ -93,6 +93,7 @@ void	PrintInput::PrintNumbers() const
 	this->printDouble();
 }
 
+
 void	PrintInput::printChar() const
 {
 	std::cout << "char: ";
@@ -112,6 +113,8 @@ void	PrintInput::printInt() const
 	else
 		std::cout << p_nb << std::endl;
 }
+
+
 
 void	PrintInput::printFloat() const
 {
