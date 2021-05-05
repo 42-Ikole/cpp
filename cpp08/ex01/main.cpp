@@ -14,8 +14,8 @@ int main()
 		sp.addNumber(INT_MAX);
 		sp.addNumber(INT_MIN);
 		sp.addNumber(12);
-	}	catch (std::exception & msg) {
-		std::cout << msg.what() << std::endl;
+	}	catch (const std::exception & msg) {
+		std::cerr << msg.what() << std::endl;
 	}
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
@@ -25,8 +25,8 @@ int main()
 		spun.addNumber(42);
 		std::cout << spun.shortestSpan() << std::endl;
 	std::cout << spun.longestSpan() << std::endl;
-	}	catch (std::exception & msg) {
-		std::cout << msg.what() << std::endl;
+	}	catch (const std::exception & msg) {
+		std::cerr << msg.what() << std::endl;
 	}
 	
 	Span sprrt = Span(43);
@@ -39,13 +39,13 @@ int main()
 		brrt.assign(lst, lst + 43);
 		sprrt.addNumber(brrt.begin(), brrt.end());
 		std::cout << sprrt.longestSpan() << std::endl;
-	}	catch (std::exception & msg) {
-		std::cout << msg.what() << std::endl;
+	}	catch (const std::exception & msg) {
+		std::cerr << msg.what() << std::endl;
 	}
 	try {
 		Span nope = Span(10);
 		nope.addNumber(brrt.begin(), brrt.end());
-	}	catch (std::exception & msg) {
-		std::cout << msg.what() << std::endl;
+	}	catch (const std::exception & msg) {
+		std::cerr << msg.what() << std::endl;
 	}
 }
