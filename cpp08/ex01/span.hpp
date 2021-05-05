@@ -27,6 +27,12 @@ class Span
 			const char* what() const throw();
 	};
 
+	class NoSpace : public std::exception
+	{
+		public:
+			const char* what() const throw();
+	};
+
 	class NoSpanMiMang : public std::exception
 	{
 		public:

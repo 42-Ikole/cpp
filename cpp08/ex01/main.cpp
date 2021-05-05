@@ -37,4 +37,10 @@ int main()
 	brrt.assign(lst, lst + 42);
 	sprrt.addNumber(brrt.begin(), brrt.end());
 	std::cout << sprrt.longestSpan() << std::endl;
+	try {
+		Span nope = Span(10);
+		nope.addNumber(brrt.begin(), brrt.end());
+	}	catch (std::exception & msg) {
+		std::cout << msg.what() << std::endl;
+	}
 }

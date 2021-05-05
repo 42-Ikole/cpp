@@ -41,7 +41,7 @@ void	Span::addNumber(const std::vector<int>::iterator begin, const std::vector<i
 		this->_arr.insert(this->_arr.begin(), begin, end);
 		std::sort(this->_arr.begin(), this->_arr.end());
 	} else
-		throw ListFull();
+		throw NoSpace();
 }
 
 size_t		Span::shortestSpan(void)
@@ -68,6 +68,11 @@ size_t	Span::longestSpan(void)
 const char* Span::ListFull::what() const throw()
 {
 	return "LIST FULL! unable to add number";
+}
+
+const char* Span::NoSpace::what() const throw()
+{
+	return "No space for an array this big amigo🇲🇽";
 }
 
 const char* Span::NoSpanMiMang::what() const throw()
