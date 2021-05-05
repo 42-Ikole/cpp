@@ -29,14 +29,19 @@ int main()
 		std::cout << msg.what() << std::endl;
 	}
 	
-	Span sprrt = Span(42);
-	int lst[42];
-	for (int i = 0; i < 42; i++)
-		lst[i] = i;
+	Span sprrt = Span(43);
 	std::vector<int> brrt;
-	brrt.assign(lst, lst + 42);
-	sprrt.addNumber(brrt.begin(), brrt.end());
-	std::cout << sprrt.longestSpan() << std::endl;
+	try {
+		int lst[42 + 1];
+		for (int i = 0; i < 42; i++)
+			lst[i] = i;
+		lst[42] = 6969;
+		brrt.assign(lst, lst + 43);
+		sprrt.addNumber(brrt.begin(), brrt.end());
+		std::cout << sprrt.longestSpan() << std::endl;
+	}	catch (std::exception & msg) {
+		std::cout << msg.what() << std::endl;
+	}
 	try {
 		Span nope = Span(10);
 		nope.addNumber(brrt.begin(), brrt.end());
