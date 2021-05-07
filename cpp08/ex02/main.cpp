@@ -1,6 +1,9 @@
 
 #include "mutantstack.hpp"
 #include <iostream>
+#include <string>
+#include <vector>
+#include <list>
 
 int main()
 {
@@ -30,4 +33,25 @@ int main()
 		++it;
 	}
 	std::stack<int> s(mstack);
+
+	std::cout << "\nNow with amazing vector strings\n-------------------------------------------------" << std::endl;
+	MutantStack<std::string, std::vector<std::string> > sstack;
+	sstack.push("WOW");
+	sstack.push("this");
+	sstack.push("actually");
+	sstack.push("works");
+	for (MutantStack<std::string, std::vector<std::string> >::iterator itr = sstack.begin(); itr != sstack.end(); itr++)
+		std::cout << *itr << " ";
+	std::cout << std::endl;
+
+	std::cout << "\nNow with amazing list doubles\n-------------------------------------------------" << std::endl;
+
+	MutantStack<double, std::list<double> > dstack;
+	dstack.push(3.1415926);
+	dstack.push(4.12);
+	dstack.push(3.15);
+	dstack.push(4.8);
+	for (MutantStack<double, std::list<double> >::iterator itr = dstack.begin(); itr != dstack.end(); itr++)
+		std::cout << *itr << " ";
+	std::cout << std::endl;
 }
