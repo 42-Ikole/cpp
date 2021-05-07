@@ -9,7 +9,7 @@ AForm::AForm( const std::string name, const int gradeSign, const int gradeExec) 
 	p_gradeExec(gradeExec),
 	p_isSigned(false)
 {
-	if (gradeSign < 1 || gradeExit < 1)
+	if (gradeSign < 1 || gradeExec < 1)
 		throw GTHE;
 	else if (gradeExec > 150 || gradeSign > 150)
 		throw GTLE;
