@@ -62,7 +62,7 @@ size_t	Span::longestSpan(void)
 {
 	if (this->_arr.size() <= 1)
 		throw NoSpanMiMang();
-	return (*(this->_arr.end() - 1) - *(this->_arr.begin()));
+	return (static_cast<unsigned int>(*(this->_arr.end() - 1) - *(this->_arr.begin())));
 }
 
 const char* Span::ListFull::what() const throw()
