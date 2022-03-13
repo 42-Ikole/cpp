@@ -81,7 +81,14 @@ class AForm
 		class AlreadySigned : public std::exception
 		{
 			const char* what() const throw() {
-				return ("Aform is already signed");
+				return ("form is already signed");
+			}
+		};
+		
+		class NotSigned : public std::exception
+		{
+			const char* what() const throw() {
+				return ("From has not been signed");
 			}
 		};
 
