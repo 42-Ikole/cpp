@@ -3,7 +3,10 @@ NAME	=	ex02
 
 SRC		=	main.cpp \
 			Bureaucrat.cpp \
-			AForm.cpp
+			AForm.cpp \
+			PresidentialPardonForm.cpp \
+			RobotomyRequestForm.cpp \
+			ShrubberyCreationForm.cpp
 
 INCL	=	-I.
 
@@ -18,5 +21,8 @@ $(NAME): $(SRC)
 
 re: fclean all
 
-fclean:
+clean:
+	$(RM) *_shrubbery
+
+fclean: clean
 	$(RM) $(NAME)
