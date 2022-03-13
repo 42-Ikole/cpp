@@ -56,8 +56,8 @@ class AForm
 	///////////////
 	public:
 
-		void	beSigned(const Bureaucrat& x);
-		execute(Bureaucrat const & executor) const = 0;
+		void			beSigned(const Bureaucrat& x);
+		virtual void	execute(Bureaucrat const & executor) const = 0;
 
 	////////////////
 	// Exceptions //
