@@ -1,6 +1,8 @@
 
 #include <Bureaucrat.hpp>
-#include <Form.hpp>
+#include <ShrubberyCreationForm.hpp>
+#include <PresidentialPardonForm.hpp>
+#include <RobotomyRequestForm.hpp>
 #include <string>
 #include <iostream>
 
@@ -71,46 +73,12 @@ static void	bureaucrat_constructors(void)
 
 static void form_constructors(void)
 {
-	try {
-		Form n1("de nummer 1", 69, 2);
-		std::cout << CREATED << n1 << "\n";
-
-		Form copy(n1);
-		std::cout << CREATED << copy << "\n";
-
-		Form assignation = copy;
-		std::cout << CREATED << assignation << "\n";
-	} catch (const std::exception& e) {
-		std::cerr << ERROR << e.what() << "\n";
-	}
-
-	// too high
-	try {
-		Form high("too high", -420, 100);
-	} catch (const std::exception& e) {
-		std::cerr << ERROR << e.what() << "\n";
-	}
-	
-	// too high
-	try {
-		Form high("too high", 100, -420);
-	} catch (const std::exception& e) {
-		std::cerr << ERROR << e.what() << "\n";
-	}
-
-	// too low
-	try {
-		Form high("too low", 420, 100);
-	} catch (const std::exception& e) {
-		std::cerr << ERROR << e.what() << "\n";
-	}
-	
-	// too low
-	try {
-		Form high("too low", 100, 420);
-	} catch (const std::exception& e) {
-		std::cerr << ERROR << e.what() << "\n";
-	}
+	PresidentialPardonForm	president("banana");
+	std::cout << CREATED << president << "\n";
+	RobotomyRequestForm		robot("bleep bloop");
+	std::cout << CREATED << robot << "\n";
+	ShrubberyCreationForm	scrub("scrub");
+	std::cout << CREATED << scrub << "\n";
 }
 
 static void	bureaucrat_modifiers(void)
@@ -159,28 +127,90 @@ static void	bureaucrat_modifiers(void)
 
 static void form_modifiers(void)
 {
-	Form woop("woop", 42, 16);
-	std::cout << CREATED << woop << "\n";
+	PresidentialPardonForm	president("banana");
+	RobotomyRequestForm		robot("bleep bloop");
+	ShrubberyCreationForm	scrub("scrub");
+	Bureaucrat				bob("Bob", 140);
 
-	Bureaucrat bob("Bob", 43);
-	std::cout << CREATED << bob << "\n";
+// scrub
+	std::cout << "\n\n-----------shrubbery-----------\n\n";
 
+	// not signed
 	try {
-		// grade too low
-		bob.signForm(woop);
-
-		bob.incrementGrade();
-
-		// signs form
-		bob.signForm(woop);
-
-		// already signed
-		bob.signForm(woop);
-
+		bob.executeForm(scrub);
 	} catch (const std::exception& e) {
 		std::cerr << ERROR << e.what() << "\n";
 	}
 
+	// grade too low
+	try {
+		bob.signForm(scrub);
+		bob.executeForm(scrub);
+	} catch (const std::exception& e) {
+		std::cerr << ERROR << e.what() << "\n";
+	}
+
+	// should execute
+	try {
+		bob.incrementGrade(10);
+		bob.executeForm(scrub);
+	} catch (const std::exception& e) {
+		std::cerr << ERROR << e.what() << "\n";
+	}
+
+//robot
+	std::cout << "\n\n-----------robot-----------\n\n";
+
+	// not signed
+	try {
+		bob.incrementGrade(80);
+		bob.executeForm(robot);
+	} catch (const std::exception& e) {
+		std::cerr << ERROR << e.what() << "\n";
+	}
+
+	// grade too low
+	try {
+		bob.signForm(robot);
+		bob.executeForm(robot);
+	} catch (const std::exception& e) {
+		std::cerr << ERROR << e.what() << "\n";
+	}
+
+	// should execute
+	try {
+		bob.incrementGrade(10);
+		bob.executeForm(robot);
+	} catch (const std::exception& e) {
+		std::cerr << ERROR << e.what() << "\n";
+	}
+
+//president
+	std::cout << "\n\n-----------president-----------\n\n";
+	
+	// not signed
+	try {
+		bob.incrementGrade(15);
+		bob.executeForm(president);
+	} catch (const std::exception& e) {
+		std::cerr << ERROR << e.what() << "\n";
+	}
+
+	// grade too low
+	try {
+		bob.signForm(president);
+		bob.executeForm(president);
+	} catch (const std::exception& e) {
+		std::cerr << ERROR << e.what() << "\n";
+	}
+
+	// should execute
+	try {
+		bob.incrementGrade(20);
+		bob.executeForm(president);
+	} catch (const std::exception& e) {
+		std::cerr << ERROR << e.what() << "\n";
+	}
 }
 
 static void run_test(const char* name, void (*test)())
