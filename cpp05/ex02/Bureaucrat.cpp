@@ -88,7 +88,7 @@
 	{
 		try {
 			form.execute(*this);
-			std::cout << this->getName() << " executed " << form.getName();
+			std::cout << this->getName() << " executed " << form.getName() << "\n";
 		} catch (const std::exception& e) {
 			std::cerr << ERROR << e.what() << "\n";
 		}
