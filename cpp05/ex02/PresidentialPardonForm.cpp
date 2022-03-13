@@ -7,12 +7,12 @@
 //////////////////
 
 	PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-		: AForm("shrubbery", PresidentialPardonForm::SIGN, PresidentialPardonForm::EXEC), _target(target)
+		: AForm("president", PresidentialPardonForm::SIGN, PresidentialPardonForm::EXEC), _target(target)
 	{
 	}
 
 	PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& x)
-		: AForm("shrubbery copy", PresidentialPardonForm::SIGN, PresidentialPardonForm::EXEC)
+		: AForm("president copy", PresidentialPardonForm::SIGN, PresidentialPardonForm::EXEC)
 	{
 		*this = x;
 	}

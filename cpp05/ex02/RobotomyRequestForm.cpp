@@ -8,12 +8,12 @@
 //////////////////
 
 	RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-		: AForm("shrubbery", RobotomyRequestForm::SIGN, RobotomyRequestForm::EXEC), _target(target)
+		: AForm("robotomy", RobotomyRequestForm::SIGN, RobotomyRequestForm::EXEC), _target(target)
 	{
 	}
 
 	RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& x)
-		: AForm("shrubbery copy", RobotomyRequestForm::SIGN, RobotomyRequestForm::EXEC)
+		: AForm("robotomy copy", RobotomyRequestForm::SIGN, RobotomyRequestForm::EXEC)
 	{
 		*this = x;
 	}
