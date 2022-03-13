@@ -10,7 +10,7 @@
 // forward declerations //
 //////////////////////////
 
-	class Form;
+	class AForm;
 
 ///////////////////
 // COLOR DEFINES //
@@ -80,7 +80,7 @@ class Bureaucrat
 
 		void	incrementGrade(unsigned short n = 1);
 		void	decrementGrade(unsigned short n = 1);
-		void	signForm(Form& form);
+		void	signForm(AForm& form);
 
 	////////////////
 	// Exceptions //

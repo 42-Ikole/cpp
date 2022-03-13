@@ -3,7 +3,7 @@ NAME	=	ex02
 
 SRC		=	main.cpp \
 			Bureaucrat.cpp \
-			Form.cpp
+			AForm.cpp
 
 INCL	=	-I.
 
