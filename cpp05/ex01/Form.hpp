@@ -78,7 +78,7 @@ class Form
 		class AlreadySigned : public std::exception
 		{
 			const char* what() const throw() {
-				return ("form already signed");
+				return ("form is already signed");
 			}
 		};
 
