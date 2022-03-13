@@ -1,5 +1,5 @@
 
-#include <Form.hpp>
+#include <AForm.hpp>
 #include <string>
 #include <iostream>
 #include <ostream>
@@ -8,61 +8,61 @@
 // Coplien //
 /////////////
 
-	Form::Form(const std::string name, short signGrade, short execGrade)
+	AForm::AForm(const std::string name, short signGrade, short execGrade)
 		: _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 	{
 		_gradeInRange(signGrade);
 		_gradeInRange(execGrade);
 	}
 
-	Form::Form(const Form& x)
+	AForm::AForm(const AForm& x)
 		: _name("copy"), _isSigned(false), _signGrade(69), _execGrade(42)
 	{
 		*this = x;	
 	}
 
-	Form&	Form::operator = (const Form& x)
+	AForm&	AForm::operator = (const AForm& x)
 	{
 		// nothing should be assigned...
 		(void)x;
 		return *(this);
 	}
 
-	Form::~Form()
+	AForm::~AForm()
 	{}
 
 /////////////
 // Helpers //
 /////////////
 
-	void	Form::_gradeInRange(short grade)
+	void	AForm::_gradeInRange(short grade)
 	{
 		if (grade <= 0)
-			throw Form::GradeTooHighException();
+			throw AForm::GradeTooHighException();
 		else if (grade > 150)
-			throw Form::GradeTooLowException();
+			throw AForm::GradeTooLowException();
 	}
 
 /////////////
 // Getters //
 /////////////
 
-	const std::string&	Form::getName(void) const
+	const std::string&	AForm::getName(void) const
 	{
 		return (_name);
 	}
 
-	short				Form::getSignGradeRequired(void) const
+	short				AForm::getSignGradeRequired(void) const
 	{
 		return (_signGrade);
 	}
 	
-	short				Form::getExecuteGradeRequired(void) const
+	short				AForm::getExecuteGradeRequired(void) const
 	{
 		return (_execGrade);
 	}
 
-	bool				Form::isSigned(void) const
+	bool				AForm::isSigned(void) const
 	{
 		return (_isSigned);
 	}
@@ -71,7 +71,7 @@
 // Modifiers //
 //////////////
 
-	void	Form::beSigned(const Bureaucrat& x)
+	void	AForm::beSigned(const Bureaucrat& x)
 	{
 		if (this->_isSigned == true)
 			throw AlreadySigned();
@@ -85,7 +85,7 @@
 // Operator overloads //
 ////////////////////////
 
-	std::ostream&	operator << (std::ostream& o, const Form& x)
+	std::ostream&	operator << (std::ostream& o, const AForm& x)
 	{
 		o << x.getName() << ", grade required to sign: " << x.getSignGradeRequired();
 		o << ", grade required to execute: " << x.getExecuteGradeRequired();
