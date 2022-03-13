@@ -26,7 +26,7 @@ stuf
 **[Module 04](https://github.com/42-Ikole/cpp/tree/master/cpp04):**  
 > Subtype polymorphism, abstract classes, interfaces
 
-**[Module 05](https://github.com/42-Ikole/cpp/tree/master/cpp05):**  
+**[Module 05 🥱](https://github.com/42-Ikole/cpp/tree/master/cpp05):**  
 > Repetition and Exceptions
 
 **[Module 06](https://github.com/42-Ikole/cpp/tree/master/cpp06):**  
