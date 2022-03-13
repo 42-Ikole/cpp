@@ -84,6 +84,16 @@
 		}
 	}
 
+	void	Bureaucrat::executeForm(const AForm& form)
+	{
+		try {
+			form.execute(*this);
+			std::cout << this->getName() << " executed " << form.getName();
+		} catch (const std::exception& e) {
+			std::cerr << ERROR << e.what() << "\n";
+		}
+	}
+
 ////////////////////////
 // Operator overloads //
 ////////////////////////

@@ -81,6 +81,7 @@ class Bureaucrat
 		void	incrementGrade(unsigned short n = 1);
 		void	decrementGrade(unsigned short n = 1);
 		void	signForm(AForm& form);
+		void	executeForm(const AForm& form);
 
 	////////////////
 	// Exceptions //
