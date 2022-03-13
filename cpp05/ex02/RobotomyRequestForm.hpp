@@ -43,14 +43,14 @@ class RobotomyRequestForm : public AForm
 	/////////////
 	private:
 
-		void	_action();
+		void	_action() const;
 
 	///////////////
 	// Modifiers //
 	///////////////
 	public:
 
-		void execute(const Bureaucrat& executor);
+		virtual void execute(const Bureaucrat& executor) const;
 
 }; /* end of RobotomyRequestForm */
 

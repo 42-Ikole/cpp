@@ -30,7 +30,7 @@
 // Helpers //
 /////////////
 
-	void	RobotomyRequestForm::_action()
+	void	RobotomyRequestForm::_action() const
 	{
 		if (rand() % 2)
 			std::cout << _target << " has been robotomized successfully!\n";
@@ -42,7 +42,7 @@
 // Modifiers //
 ///////////////
 
-	void RobotomyRequestForm::execute(const Bureaucrat& executor)
+	void RobotomyRequestForm::execute(const Bureaucrat& executor) const
 	{
 		if (this->isSigned() == false)
 			throw NotSigned();

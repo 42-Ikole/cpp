@@ -40,7 +40,6 @@ class AForm
 	private:
 
 		void			_gradeInRange(short	grade);
-		virtual void	_action() = 0;
 
 	/////////////
 	// Getters //
@@ -58,7 +57,7 @@ class AForm
 	public:
 
 		void			beSigned(const Bureaucrat& x);
-		virtual void	execute(Bureaucrat const & executor) const = 0;
+		virtual void	execute(const Bureaucrat& executor) const = 0;
 
 	////////////////
 	// Exceptions //

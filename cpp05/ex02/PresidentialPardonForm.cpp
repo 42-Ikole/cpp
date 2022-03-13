@@ -29,16 +29,16 @@
 // Helpers //
 /////////////
 
-	void	PresidentialPardonForm::_action()
+	void	PresidentialPardonForm::_action() const
 	{
-		std::cout << _target << " has been pardoned by Zaphod Beeblebrox.\n"
+		std::cout << _target << " has been pardoned by Zaphod Beeblebrox.\n";
 	}
 
 ///////////////
 // Modifiers //
 ///////////////
 
-	void PresidentialPardonForm::execute(const Bureaucrat& executor)
+	void PresidentialPardonForm::execute(const Bureaucrat& executor) const
 	{
 		if (this->isSigned() == false)
 			throw NotSigned();

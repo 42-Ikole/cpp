@@ -43,14 +43,14 @@ class PresidentialPardonForm : public AForm
 	/////////////
 	private:
 
-		void	_action();
+		void	_action() const;
 
 	///////////////
 	// Modifiers //
 	///////////////
 	public:
 
-		void execute(const Bureaucrat& executor);
+		void execute(const Bureaucrat& executor) const;
 
 }; /* end of PresidentialPardonForm */
 
