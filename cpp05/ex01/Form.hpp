@@ -16,7 +16,8 @@ class Form
 
 		const std::string	_name;
 		bool				_isSigned;
-		short				_gradeRequired;
+		const short			_signGrade;
+		const short			_execGrade;
 	
 	//////////////////
 	// Constructors //
@@ -27,7 +28,7 @@ class Form
 
 	public:
 
-		Form(const std::string name, short gradeRequired);
+		Form(const std::string name, short signGrade, short execGrade);
 		Form(const Form& x);
 		virtual ~Form();
 
@@ -46,7 +47,8 @@ class Form
 	public:
 
 		const std::string&	getName(void) const;
-		short				getGradeRequired(void) const;
+		short				getSignGradeRequired(void) const;
+		short				getExecuteGradeRequired(void) const;
 		bool				isSigned(void) const;
 
 	///////////////

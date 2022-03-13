@@ -8,24 +8,23 @@
 // Coplien //
 /////////////
 
-	Form::Form(const std::string name, short gradeRequired)
-		: _name(name), _isSigned(false)
+	Form::Form(const std::string name, short signGrade, short execGrade)
+		: _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 	{
-		_gradeInRange(gradeRequired);
-		this->_gradeRequired = gradeRequired;
+		_gradeInRange(signGrade);
+		_gradeInRange(execGrade);
 	}
 
 	Form::Form(const Form& x)
+		: _name("copy"), _isSigned(false), _signGrade(69), _execGrade(42)
 	{
 		*this = x;	
 	}
 
 	Form&	Form::operator = (const Form& x)
 	{
-		if (this == &x)
-			return *(this);
-
-		this->_gradeRequired = x._gradeRequired;
+		// nothing should be assigned...
+		(void)x;
 		return *(this);
 	}
 
@@ -53,9 +52,14 @@
 		return (_name);
 	}
 
-	short				Form::getGradeRequired(void) const
+	short				Form::getSignGradeRequired(void) const
 	{
-		return (_gradeRequired);
+		return (_signGrade);
+	}
+	
+	short				Form::getExecuteGradeRequired(void) const
+	{
+		return (_execGrade);
 	}
 
 	bool				Form::isSigned(void) const
@@ -71,7 +75,7 @@
 	{
 		if (this->_isSigned == true)
 			throw AlreadySigned();
-		if (x.getGrade() > _gradeRequired)
+		if (x.getGrade() > _signGrade)
 			throw GradeTooLowException();
 		_isSigned = true;
 		std::cout << x.getName() << " signed " << this->_name << "\n";
@@ -83,6 +87,8 @@
 
 	std::ostream&	operator << (std::ostream& o, const Form& x)
 	{
-		o << x.getName() << ", grade required: " << x.getGradeRequired() << std::boolalpha << " signed: " << x.isSigned();
+		o << x.getName() << ", grade required to sign: " << x.getSignGradeRequired();
+		o << ", grade required to execute: " << x.getExecuteGradeRequired();
+		o << std::boolalpha << " signed: " << x.isSigned();
 		return (o);
 	}
