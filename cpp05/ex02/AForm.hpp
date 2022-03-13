@@ -39,7 +39,8 @@ class AForm
 	/////////////
 	private:
 
-		void	_gradeInRange(short	grade);
+		void			_gradeInRange(short	grade);
+		virtual void	_action() = 0;
 
 	/////////////
 	// Getters //
