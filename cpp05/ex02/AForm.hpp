@@ -88,7 +88,7 @@ class AForm
 		class NotSigned : public std::exception
 		{
 			const char* what() const throw() {
-				return ("From has not been signed");
+				return ("Form has not been signed");
 			}
 		};
 
