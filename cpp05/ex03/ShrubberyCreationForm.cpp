@@ -58,7 +58,6 @@
 		this->_action();
 	}
 
-
 AForm*	CreateShrubberyCreationForm(const std::string& target)
 {
 	return new ShrubberyCreationForm(target);

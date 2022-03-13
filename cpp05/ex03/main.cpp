@@ -214,24 +214,33 @@ static void form_modifiers(void)
 	}
 }
 
+static void	form_stuff(AForm* form)
+{
+	static Bureaucrat	kami("Kami", 1);
+
+	std::cout << CREATED << *form << "\n";
+	kami.signForm(*form);
+	kami.executeForm(*form);
+	delete form;
+}
+
 static void interns(void)
 {
-	Intern	sukkel;
-	AForm*	form;
+	Intern		sukkel;
+	AForm*		form;
 
 	try {
 		// should work
 		form = sukkel.makeForm("shrubbery creation", "blub");
-		std::cout << CREATED << *form << "\n";
-		delete form;
+		form_stuff(form);
+
 		// should work
 		form = sukkel.makeForm("robotomy request", "fish");
-		std::cout << CREATED << *form << "\n";
-		delete form;
+		form_stuff(form);
+
 		// should work
 		form = sukkel.makeForm("presidential pardon", "yarr");
-		std::cout << CREATED << *form << "\n";
-		delete form;
+		form_stuff(form);
 
 		// should not work
 		form = sukkel.makeForm("does not exist", "whoops");
