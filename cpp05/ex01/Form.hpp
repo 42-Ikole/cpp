@@ -3,6 +3,7 @@
 # define FORM_HPP
 
 # include <Bureaucrat.hpp>
+# include <ostream>
 # include <string>
 # include <exception>
 
@@ -82,5 +83,11 @@ class Form
 		};
 
 }; /* end of form class */
+
+////////////////////////
+// Operator overloads //
+////////////////////////
+
+	std::ostream& operator << (std::ostream& o, const Form& x);
 
 #endif

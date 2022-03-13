@@ -81,8 +81,8 @@
 // Operator overloads //
 ////////////////////////
 
-	std::ostream&	operator << (std::ostream& o, Form& x)
+	std::ostream&	operator << (std::ostream& o, const Form& x)
 	{
-		o << x.getName() << ", grade required: " << x.getGradeRequired() << std::boolalpha << "signed: " << x.isSigned();
+		o << x.getName() << ", grade required: " << x.getGradeRequired() << std::boolalpha << " signed: " << x.isSigned();
 		return (o);
 	}

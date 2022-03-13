@@ -107,6 +107,6 @@ class Bureaucrat
 // Operator overloads //
 ////////////////////////
 
-	std::ostream& operator << (std::ostream& o, Bureaucrat& x);
+	std::ostream& operator << (std::ostream& o, const Bureaucrat& x);
 
 #endif

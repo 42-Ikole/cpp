@@ -88,7 +88,7 @@
 // Operator overloads //
 ////////////////////////
 
-	std::ostream&	operator << (std::ostream& o, Bureaucrat& x)
+	std::ostream&	operator << (std::ostream& o, const Bureaucrat& x)
 	{
 		o << x.getName() << ", grade: " << x.getGrade();
 		return (o);
