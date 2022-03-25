@@ -1,15 +1,16 @@
 
-#include "PrintInput.hpp"
+#include "Convert.hpp"
 #include <iostream>
 
-int		main(int count, char **thiccJonas)
+int		main(int argc, char **argv)
 {
-	if (count != 2)
+	if (argc != 2)
 	{
 		std::cerr << "wrong number of arguments amigo!" << std::endl;
 		return 0;
 	}
-	PrintInput pnb = PrintInput(thiccJonas[1]);
-	pnb.PrintNumbers();
+
+	Convert c(argv[1]);
+	std::cout << c;
 	return 0;
 }

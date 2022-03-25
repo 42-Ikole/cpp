@@ -1,17 +1,21 @@
 
-NAME = convert
+NAME	=	convert
 
-SRCS = main.cpp PrintInput.cpp
+SRC		=	main.cpp \
+			Convert.cpp
 
-$(NAME): $(SRCS)
-	clang++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
+INCL	=	-I.
 
-all: $(NAMe)
+FLAGS	=	-Wall -Wextra -Werror -pedantic -std=c++98
 
-test: all
-	./convert 65
+CC		=	clang++
+
+all: $(NAME)
+
+$(NAME): $(SRC)
+	$(CC) $(FLAGS) $(SRC) $(INCL) -o $(NAME)
 
 re: fclean all
 
 fclean:
-	@rm -rf $(NAME)
+	$(RM) $(NAME)
