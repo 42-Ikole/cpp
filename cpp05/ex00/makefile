@@ -1,5 +1,5 @@
 
-NAME	=	bureaucrat
+NAME	=	ex01
 
 SRC		=	main.cpp \
 			Bureaucrat.cpp

@@ -255,12 +255,18 @@ static void run_test(const char* name, void (*test)())
 	test();
 }
 
-int main(void)
+int main(int argc, char** argv)
 {
+	(void)argc;
 	run_test("Bureaucrat Constructors", bureaucrat_constructors);
 	run_test("Form Constructors", form_constructors);
 	run_test("Bureaucrat Modifiers", bureaucrat_modifiers);
 	run_test("Form modifiers", form_modifiers);
 	run_test("interns", interns);
+
+	std::cout << std::endl;
+	std::string exec(argv[0]);
+	std::string leaks(std::string("leaks ") + exec.substr(exec.find_last_of("/") + 1) + " | grep 'leaks for'");
+	system(leaks.c_str());
 	return (0);
 }
