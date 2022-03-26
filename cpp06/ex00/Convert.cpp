@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <limits>
 
 /////////////
 // Helpers //
@@ -25,7 +26,7 @@
 		return (input[0] < '0' || input[0] > '9');
 	}
 
-	static Convert::type		isNumericLiteral(const std::string& input)
+	static Convert::type		getNumericType(const std::string& input)
 	{
 		size_t i = 0;
 
@@ -63,15 +64,19 @@
 			return Convert::PSEUDO_LITERAL;
 		if (isCharLiteral(input) == true)
 			return Convert::CHAR;
-		return (isNumericLiteral(input));
+		return (getNumericType(input));
 	}
 
 	static size_t			getPrecisePrecision(const std::string& input)
 	{
 		size_t pos = input.find_first_of('.');
-		if (pos == std::string::npos)
+		if (pos == std::string::npos || pos + 1 == input.length())
 			return (1);
-		return (input.length() - (pos + ((input[input.length() - 1] == 'f') ? 2 : 1)));
+		pos += 1;
+		pos += (input[input.length() - 1] == 'f');
+		if (pos == input.length())
+			return (1);
+		return (input.length() - pos);
 	}
 
 /////////////
@@ -125,59 +130,35 @@
 
 	void	Convert::printChar(std::ostream& o) const
 	{
-		o << "char: ";
-		try {
-			char c = convertToType<char>();
+		this->validateSize<char>();
+		char c = convertToType<char>();
 
-			if (std::isprint(c) == false)
-				o << "Non displayable";
-			else
-				o << '\'' << c << '\'';
-		} catch (const Impossible& e) {
-			o << e.what();
-		}
-		o << "\n";
+		if (std::isprint(c) == false)
+			throw NonDisplayable();
+		o << '\'' << c << '\'';
 	}
 
 	void	Convert::printInt(std::ostream& o) const
 	{
-		o << "int: ";
-		try {
-			o << convertToType<int>();
-		} catch (const Impossible& e) {
-			o << e.what();
-		}
-		o << "\n";
+		this->validateSize<int>();
+		o << convertToType<int>();
 	}
 	
 	void	Convert::printFloat(std::ostream& o) const
 	{
-		o << "float: ";
+		this->validateSize<float>();
 		if (_type == PSEUDO_LITERAL)
 			o << _raw << ((_raw[_raw.length() - 1] == 'f') ? "" : "f");
-		else {
-			try {
-				o << convertToType<float>() << 'f';
-			} catch (const Impossible& e) {
-				o << e.what();
-			}
-		}
-		o << "\n";
+		else
+			o << convertToType<float>() << 'f';
 	}
 
 	void	Convert::printDouble(std::ostream& o) const
 	{
-		o << "double: ";
 		if (_type == PSEUDO_LITERAL)
 			o << _raw;
-		else {
-			try {
-				o << convertToType<double>();
-			} catch (const Impossible& e) {
-				o << e.what();
-			}
-		}
-		o << "\n";
+		else
+			o << convertToType<double>();
 	}
 
 /////////////
@@ -193,11 +174,12 @@
 // Operator overload //
 ///////////////////////
 
-	template<typename T>
-		static void	printConversion(std::ostream& o, const std::string& conversion, const Convert& c, T(Convert::*convertFn)() const)
+	static void	printConversion(std::ostream& o, const std::string& conversion, const Convert& c, void(Convert::*convertFn)(std::ostream&) const)
 	{
 		try {
-			o << conversion << ": " << (c.*convertFn)() << "\n";
+			o << conversion << ": ";
+			(c.*convertFn)(o);
+			o << "\n";
 		} catch (const std::exception& e) {
 			o << e.what() << "\n";
 		}
@@ -207,10 +189,10 @@
 	{
 		o << std::setprecision(c.getPrecision()) << std::fixed;
 
-		c.printChar(o);
-		c.printInt(o);
-		c.printFloat(o);
-		c.printDouble(o);
+		printConversion(o, "char", c, &Convert::printChar);
+		printConversion(o, "int", c, &Convert::printInt);
+		printConversion(o, "float", c, &Convert::printFloat);
+		printConversion(o, "double", c, &Convert::printDouble);
 
 		return o;
 	}

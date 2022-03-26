@@ -74,6 +74,25 @@ class Convert
 			}
 		}
 	
+		template<typename T>
+			void validateSize() const
+		{
+			switch (_type)
+			{
+				case INT:
+					if (_data.i < std::numeric_limits<T>::lowest() || _data.i > std::numeric_limits<T>::max())
+						throw TooBig();
+				case FLOAT:
+					if (_data.f < std::numeric_limits<T>::lowest() || _data.f > std::numeric_limits<T>::max())
+						throw TooBig();
+				case DOUBLE:
+					if (_data.d < std::numeric_limits<T>::lowest() || _data.d > std::numeric_limits<T>::max())
+						throw TooBig();
+				default:
+					break;
+			}
+		}
+
 	////////////////
 	// Converters //
 	////////////////
@@ -105,6 +124,18 @@ class Convert
 		struct Impossible : public std::exception {
 			const char* what() const throw() {
 				return "impossible";
+			}
+		};
+
+		struct NonDisplayable : public std::exception {
+			const char* what() const throw() {
+				return "Non Displayable";
+			}
+		};
+
+		struct TooBig : public std::exception {
+			const char* what() const throw() {
+				return "your number does not fit :wink:";
 			}
 		};
 

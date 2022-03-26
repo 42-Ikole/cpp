@@ -10,7 +10,11 @@ int		main(int argc, char **argv)
 		return 0;
 	}
 
-	Convert c(argv[1]);
-	std::cout << c;
+	try {
+		Convert c(argv[1]);
+		std::cout << c;
+	} catch (const std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
 	return 0;
 }
