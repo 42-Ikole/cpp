@@ -4,12 +4,14 @@
 #include <string>
 
 
-void	printData(Data *data)
+std::ostream&	operator << (std::ostream& o, const Data& d)
 {
-	std::cout <<	"-----------------------" << std::endl <<
-					"s1 : " << data->s1 << std::endl <<
-					"n  : " << data->n << std::endl <<
-					"s2 : " << data->s2 << std::endl << std::endl;;
+	o << "-----------------------\n" <<
+		"address: " << (void*)&d << "\n" <<
+		"s1 : " << d.s1 << "\n" <<
+		"n  : " << d.n << "\n" <<
+		"s2 : " << d.s2 << "\n" << std::endl;
+	return o;
 }
 
 static std::string	randomString()
@@ -32,20 +34,19 @@ static std::string	randomString()
 	return (name);
 }
 
-void * serialize(void)
+uintptr_t serialize(void)
 {
 	Data *ret = new	Data;
 	ret->s1 = randomString();
 	ret->n = rand();
 	ret->s2 = randomString();
 	std::cout << "serialized data: " << std::endl;
-	printData(ret);
-	return reinterpret_cast<void*>(ret);
+	std::cout << *ret;
+	return reinterpret_cast<uintptr_t>(ret);
 }
 
-Data * deserialize(void * raw)
+Data * deserialize(uintptr_t raw)
 {
-	Data *ret = reinterpret_cast<Data*>(raw);
-	return ret;
+	return reinterpret_cast<Data*>(raw);
 }
 

@@ -2,8 +2,8 @@
 #ifndef SERIALIZATION_HPP
 # define SERIALIZATION_HPP
 
-#include <string>
-
+# include <string>
+# include <ostream>
 
 struct Data
 {
@@ -12,8 +12,9 @@ struct Data
 	std::string s2;
 };
 
-Data *	deserialize(void * raw);
-void *	serialize(void);
-void	printData(Data *data);
+std::ostream&	operator << (std::ostream& o, const Data& d);
+
+Data *		deserialize(uintptr_t raw);
+uintptr_t	serialize(void);
 
 #endif 
