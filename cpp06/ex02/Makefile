@@ -1,7 +1,7 @@
 
-NAME = ABC
+NAME = identify
 
-SRCS = main.cpp Base.cpp
+SRCS = main.cpp Base.cpp ABC.cpp
 
 $(NAME): $(SRCS)
 	clang++ -Wall -Wextra -Werror $(SRCS) -o $(NAME)
