@@ -91,14 +91,6 @@ namespace Utility
 	 * @param month
 	 * @return
 	*/
-	size_t NumberOfDaysPassedBeforeMonth(const int year, const Month month);
-
-	/*!
-	 * @brief
-	 * @param year
-	 * @param month
-	 * @return
-	*/
 	size_t NumberOfDaysInMonth(const int year, const Month month);
 
 } /* namespace Utility */

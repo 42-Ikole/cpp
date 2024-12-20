@@ -39,7 +39,7 @@ namespace Parser
 		auto maximumValidDayValue = Utility::NumberOfDaysInMonth(year, month);
 		if (year == currentYear && month == currentMonth)
 		{
-			maximumValidDayValue = currentDayInYear - Utility::NumberOfDaysPassedBeforeMonth(year, month);
+			maximumValidDayValue = currentDayInYear;
 		}
 		return Utility::ConvertStringToArithmeticType<int>(dayString, minimumValidDayValue, maximumValidDayValue);
 	}

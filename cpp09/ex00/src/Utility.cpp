@@ -4,7 +4,6 @@
 #include <cstdio>
 #include <stdexcept>
 #include <cstring>
-#include <iostream>
 #include <chrono>
 
 namespace Utility
@@ -58,7 +57,7 @@ namespace Utility
 		const auto currentTm = std::localtime(&currentTime_t);
 		const auto currentYear = minimumPossibleYear + currentTm->tm_year;
 		const auto currentMonth = currentTm->tm_mon + 1;
-		const auto currentDay = currentTm->tm_mday + 1;
+		const auto currentDay = currentTm->tm_mday;
 
 		return std::tuple{currentYear, static_cast<Month>(currentMonth), currentDay};
 	}
@@ -82,16 +81,6 @@ namespace Utility
 			default:
 				throw std::runtime_error("Invalid month: " + std::to_string(static_cast<int>(month)) + " how did you manage this xd");
 		}
-	}
-
-	size_t NumberOfDaysPassedBeforeMonth(const int year, const Month month)
-	{
-		size_t numberOfDaysPassed = 0;
-		for (size_t m = 1; m < static_cast<size_t>(month); m++)
-		{
-			numberOfDaysPassed += NumberOfDaysInMonth(year, static_cast<Month>(m));
-		}
-		return numberOfDaysPassed;
 	}
 
 } /* namespace Utility */
