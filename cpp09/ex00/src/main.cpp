@@ -10,13 +10,12 @@ int main(int argc, const char* const* argv)
 		std::cerr << "To run this program you need to provide a database file as argument." << std::endl;
 		return 1;
 	}
-	(void)argv;
 
 	try
 	{
 		const BitcoinExchange bitcoinExchange("data.csv");
 
-		// bitcoinExchange.
+		bitcoinExchange.CalculateAndPrintExchanges(argv[1]);
 	}
 	catch (const std::exception& e)
 	{

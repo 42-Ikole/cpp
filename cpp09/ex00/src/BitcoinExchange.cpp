@@ -9,8 +9,7 @@ BitcoinExchange::BitcoinExchange(const std::string& dataFileName)
 		Parser::ParseFileIntoDateValuePairs(
 			dataFileName,
 			Parser::csvDelimiter,
-			minimumExchangeRate,
-			maximumExchangeRate
+			numberOfLinesInHeader
 		)
 	)
 {
@@ -40,18 +39,28 @@ float BitcoinExchange::CalculateExchangeWithClosestDate(const std::string& date,
 	// Doing a lexicographical compare on the dates because that should work.
 	if (smallerItr->first.compare(greaterOrEqualItr->first) < 0)
 	{
-		
 	}
+		return 1;
 }
 
 void BitcoinExchange::CalculateAndPrintExchanges(const std::string& inputFileName) const
 {
 	constexpr auto delimiter = " | ";
-	const auto& valuesToExchange = Parser::ParseFileIntoDateValuePairs(inputFileName, delimiter, 0);
+	constexpr auto errorOnDuplicates = false;
+	constexpr auto stopOnParseErrors = false;
+	const auto& valuesToExchange = Parser::ParseFileIntoDateValuePairs(
+		inputFileName,
+		delimiter,
+		numberOfLinesInHeader,
+		errorOnDuplicates,
+		stopOnParseErrors,
+		minimumExchangeValue,
+		maximumExchangeValue
+	);
 
 	for (const auto& [date, valueToExchange] : valuesToExchange)
 	{
 		const auto exhangedValue = CalculateExchangeWithClosestDate(date, valueToExchange);
-		std::cout << date << " => " << valueToExchange << " = " << exchangeRates << '\n';
+		std::cout << date << " => " << valueToExchange << " = " << exhangedValue << '\n';
 	}
 }

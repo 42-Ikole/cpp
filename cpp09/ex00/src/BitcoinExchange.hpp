@@ -2,14 +2,15 @@
 
 #include <string>
 #include <map>
-
+#include <limits>
 
 class BitcoinExchange
 {
 private:
 
-	static constexpr float minimumExchangeRate = 0; /*!< -. */
-	static constexpr float maximumExchangeRate = 1000; /*!< -. */
+	static constexpr float minimumExchangeValue = std::numeric_limits<float>::min(); /*!< -. */
+	static constexpr float maximumExchangeValue = 1000; /*!< -. */
+	static constexpr size_t numberOfLinesInHeader = 1; /*!< -. */
 
 	const std::map<std::string, float> exchangeRates; /* map<date, exchangeRate> */
 

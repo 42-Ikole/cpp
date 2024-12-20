@@ -57,10 +57,20 @@ namespace Parser
 	*/
 	bool IsValidDate(const std::string_view& date);
 
+	std::tuple<std::string_view, float> ParseLineIntoDateValuePair(
+		const std::string& line,
+		const std::string& delimiter,
+		const std::optional<float>& minimumValue = std::nullopt,
+		const std::optional<float>& maximumValue = std::nullopt
+	);
+
 	/*!
 	 * @brief parses files with format "date <delimiter> value"
 	 * @param dataFileName
 	 * @param delimiter
+	 * @param numberOfLinesInHeader
+	 * @param errorOnDuplicates
+	 * @param stopAtParseError
 	 * @param minimumValue
 	 * @param maximumValue
 	 * @return
@@ -68,6 +78,9 @@ namespace Parser
 	std::map<std::string, float> ParseFileIntoDateValuePairs(
 		const std::string& dataFileName,
 		const std::string& delimiter,
+		const size_t numberOfLinesInHeader,
+		const bool errorOnDuplicates = true,
+		const bool stopAtParseError = true,
 		const std::optional<float>& minimumValue = std::nullopt,
 		const std::optional<float>& maximumValue = std::nullopt
 	);
