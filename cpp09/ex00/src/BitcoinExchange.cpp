@@ -1,8 +1,8 @@
 #include "BitcoinExchange.hpp"
 #include "ParseFile.hpp"
+#include "Utility.hpp"
 
 #include <iostream>
-
 
 BitcoinExchange::BitcoinExchange(const std::string& dataFileName)
 	: exchangeRates(
@@ -22,25 +22,15 @@ float BitcoinExchange::CalculateExchange(float valueToExchange, float exchangeRa
 
 float BitcoinExchange::CalculateExchangeWithClosestDate(const std::string& date, float valueToExchange) const
 {
-	auto greaterOrEqualItr = exchangeRates.lower_bound(date);
-		
-	if (greaterOrEqualItr == exchangeRates.end())
-	{
-		greaterOrEqualItr--;
-	}
+	auto itr = exchangeRates.lower_bound(date);
 
-	// This is either the correct date or the only date in the database.
-	if (greaterOrEqualItr == exchangeRates.begin())
+	if (itr == exchangeRates.end() || itr->first != date)
 	{
-		return CalculateExchange(greaterOrEqualItr->second, valueToExchange);
+		itr--;
+		std::cerr << "Could not find exchange rate on: " << date << ", using exchange rate from ";
+		std::cerr << Utility::DifferenceInDays(date, itr->first) << " days ago\n";
 	}
-	
-	const auto smallerItr = std::prev(greaterOrEqualItr);
-	// Doing a lexicographical compare on the dates because that should work.
-	if (smallerItr->first.compare(greaterOrEqualItr->first) < 0)
-	{
-	}
-		return 1;
+	return CalculateExchange(valueToExchange, itr->second);
 }
 
 void BitcoinExchange::CalculateAndPrintExchanges(const std::string& inputFileName) const
@@ -60,7 +50,14 @@ void BitcoinExchange::CalculateAndPrintExchanges(const std::string& inputFileNam
 
 	for (const auto& [date, valueToExchange] : valuesToExchange)
 	{
-		const auto exhangedValue = CalculateExchangeWithClosestDate(date, valueToExchange);
-		std::cout << date << " => " << valueToExchange << " = " << exhangedValue << '\n';
+		try
+		{
+			const auto exhangedValue = CalculateExchangeWithClosestDate(date, valueToExchange);
+			std::cout << date << " => " << valueToExchange << " = " << exhangedValue << '\n';
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << "Error: " << e.what() << std::endl;
+		}
 	}
 }

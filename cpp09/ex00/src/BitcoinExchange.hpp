@@ -12,7 +12,7 @@ private:
 	static constexpr float maximumExchangeValue = 1000; /*!< -. */
 	static constexpr size_t numberOfLinesInHeader = 1; /*!< -. */
 
-	const std::map<std::string, float> exchangeRates; /* map<date, exchangeRate> */
+	const std::multimap<std::string, float> exchangeRates; /* map<date, exchangeRate> */
 
 	/*!
 	 * @brief

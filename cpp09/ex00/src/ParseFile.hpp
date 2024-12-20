@@ -1,62 +1,56 @@
 #pragma once
 
+#include "Utility.hpp"
+
 #include <map>
 #include <string>
 #include <tuple>
 #include <optional>
-
-/*!
- * @brief -.
-*/
-template<class T>
-concept ArithmeticType = std::is_arithmetic_v<T>;
+#include <string_view>
 
 namespace Parser
 {
 	static constexpr auto csvDelimiter = ",";
 
 	/*!
-	 * @brief Parses the dataFile into a map for easy lookup.
-	 * @param dataFileName
+	 * @brief
+	 * @param yearString
 	 * @return
 	*/
-	std::map<std::string, float> ExchangeRatesFromDataFile(const std::string& dataFileName);
+	int GetYear(const std::string_view& yearString);
 
 	/*!
-	 * @brief Splits string into two strings based on delimiter.
-	 * @param string
-	 * @param delimiter
-	*/
-	std::tuple<std::string_view, std::string_view> SplitStringOnDelimiter(const std::string_view& string, const std::string& delimiter);
-
-	/*!
-	 * @brief Splits string into two strings based on delimiter.
-	 * @param string
-	 * @param delimiter
-	*/
-	std::tuple<std::string_view, std::string_view> SplitStringOnDelimiter(const std::string& string, const std::string& delimiter);
-
-	/*!
-	 * @brief -.
-	 * @tparam T
-	 * @param string
-	 * @param minimumValue
-	 * @param maximumValue
+	 * @brief
+	 * @param monthString
+	 * @param year
 	 * @return
 	*/
-	template<ArithmeticType T>
-	T ConvertStringToArithmeticType(
-		const std::string_view& string,
-		const std::optional<T>& minimumValue = std::nullopt,
-		const std::optional<T>& maximumValue = std::nullopt);
+	Month GetMonth(const std::string_view& monthString, const int year);
+
+	/*!
+	 * @brief
+	 * @param dayString
+	 * @param year
+	 * @param month
+	 * @return
+	*/
+	bool GetDay(const std::string_view& dayString, const int year, const Month month);
 
 	/*!
 	 * @brief Checks wheter the date is in the propper format and possible.
 	 * @param date
+	 * @return optional<reasonInvalidDate>
+	*/
+	std::optional<std::string> ValidateDate(const std::string_view& date);
+
+	/*!
+	 * @brief
+	 * @param line
+	 * @param delimiter
+	 * @param minimumValue
+	 * @param maximumValue
 	 * @return
 	*/
-	bool IsValidDate(const std::string_view& date);
-
 	std::tuple<std::string_view, float> ParseLineIntoDateValuePair(
 		const std::string& line,
 		const std::string& delimiter,
@@ -65,7 +59,7 @@ namespace Parser
 	);
 
 	/*!
-	 * @brief parses files with format "date <delimiter> value"
+	 * @brief Parses files with format "date <delimiter> value" into a map of date value pairs.
 	 * @param dataFileName
 	 * @param delimiter
 	 * @param numberOfLinesInHeader
@@ -75,7 +69,7 @@ namespace Parser
 	 * @param maximumValue
 	 * @return
 	*/
-	std::map<std::string, float> ParseFileIntoDateValuePairs(
+	std::multimap<std::string, float> ParseFileIntoDateValuePairs(
 		const std::string& dataFileName,
 		const std::string& delimiter,
 		const size_t numberOfLinesInHeader,
