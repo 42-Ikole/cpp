@@ -30,14 +30,14 @@ namespace Utility
 
 	std::time_t DateStringToTimeT(const std::string& date)
 	{
-		int hh, mm, ss;
+		int yyyy, mm, dd;
 		struct tm dateStruct;
 		std::memset(&dateStruct, 0, sizeof(dateStruct));
 
-		std::sscanf(date.c_str(), "%d-%d-%d", &hh, &mm, &ss);
-		dateStruct.tm_hour = hh;
-		dateStruct.tm_min = mm;
-		dateStruct.tm_sec = ss;
+		std::sscanf(date.c_str(), "%d-%d-%d", &yyyy, &mm, &dd);
+		dateStruct.tm_year = yyyy;
+		dateStruct.tm_mon = mm;
+		dateStruct.tm_mday = dd;
 
 		return mktime(&dateStruct);
 	}
@@ -47,7 +47,9 @@ namespace Utility
 		const auto time1 = DateStringToTimeT(date1);
 		const auto time2 = DateStringToTimeT(date2);
 
-		return std::abs(std::difftime(time1, time2));
+		// We divide by the number of seconds becasue difftime's output is in seconds.
+		constexpr auto numberOfSecondsInDay = 24 * 60 * 60;
+		return std::abs(std::difftime(time1, time2)) / numberOfSecondsInDay;
 	}
 
 	std::tuple<int, Month, int> CurrentDate()
