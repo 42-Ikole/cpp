@@ -48,7 +48,7 @@ public:
 	 * @param rhs
 	 * @return
 	*/
-	BitcoinExchange& operator = (const BitcoinExchange& rhs) = default;
+	BitcoinExchange& operator = (const BitcoinExchange& rhs) = delete;
 
 	/*!
 	 * @brief

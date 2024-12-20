@@ -134,6 +134,10 @@ namespace Parser
 					std::cerr << "Error: " << e.what() << '\n';
 				}
 			}
+			if (dateValuePairs.empty())
+			{
+				throw std::runtime_error("No valid date value pairs were found");
+			}
 			return dateValuePairs;
 		}
 		catch (const std::exception& e)

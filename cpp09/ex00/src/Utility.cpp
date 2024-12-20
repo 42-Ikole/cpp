@@ -47,7 +47,7 @@ namespace Utility
 		const auto time1 = DateStringToTimeT(date1);
 		const auto time2 = DateStringToTimeT(date2);
 
-		// We divide by the number of seconds becasue difftime's output is in seconds.
+		// We divide by the number of seconds because difftime's output is in seconds.
 		constexpr auto numberOfSecondsInDay = 24 * 60 * 60;
 		return std::abs(std::difftime(time1, time2)) / numberOfSecondsInDay;
 	}

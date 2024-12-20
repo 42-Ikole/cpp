@@ -24,11 +24,16 @@ float BitcoinExchange::CalculateExchangeWithClosestDate(const std::string& date,
 {
 	auto itr = exchangeRates.lower_bound(date);
 
+	if (itr == exchangeRates.begin())
+	{
+		throw std::runtime_error("Could not find exchange rate for " + date + " or earlier, the first known exchange rate is " + itr->first);
+	}
+
 	if (itr == exchangeRates.end() || itr->first != date)
 	{
 		itr--;
 		std::cerr << "Could not find exchange rate on: " << date << ", using exchange rate from ";
-		std::cerr << Utility::DifferenceInDays(date, itr->first) << " days ago\n";
+		std::cerr << Utility::DifferenceInDays(date, itr->first) << " days earlier\n";
 	}
 	return CalculateExchange(valueToExchange, itr->second);
 }
