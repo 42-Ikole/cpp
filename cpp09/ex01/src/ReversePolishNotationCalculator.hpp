@@ -1,16 +1,43 @@
 #pragma once
 
 #include <inttypes.h>
-#include <deque>
+#include <queue>
+#include <optional>
+#include <string>
 
-template<class T>
-T PopFirstValueFromDeque(std::deque<T>& deque)
+class Equation
 {
-	T value = deque.front();
-	deque.pop_front();
-	return value;
-}
+public:
 
-int32_t AsciiToIntegral(char c);
+	/*!
+	 * @brief
+	*/
+	enum class Operator
+	{
+		plus = '+',
+		minus = '-',
+		divide = '/',
+		multiply = '*'
+	};
 
-int32_t CalculateReversePolishNotation(std::deque<char> equationDeque);
+private:	
+
+	const Operator op; /*!< -. */
+	std::optional<int32_t> leftValue; /*!< -.*/
+	const int32_t rightValue; /*!< -. */
+
+public:
+
+	Equation(Operator op_, std::optional<int32_t> leftValue_, int32_t rightValue_);
+
+	bool IsLeftValueSet() const;
+
+	void SetLeftValue(int32_t newValue);
+
+	int32_t Execute() const;
+
+};
+
+int32_t CalculateReversePolishNotation(std::queue<Equation> equationQueue);
+
+std::queue<Equation> CreateEquationStack(const std::string& input);

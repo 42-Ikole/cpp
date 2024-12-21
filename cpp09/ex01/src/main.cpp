@@ -13,12 +13,12 @@ int main(int argc, const char* const* argv)
 
 	try
 	{
-		std::deque<char> equationDeque;
+		std::queue<char> equationQueue;
 		for (auto i = 1; i < argc; i++)
 		{
-			equationDeque.emplace_back(argv[i][0]);
+			equationQueue.emplace_back(argv[i][0]);
 		}
-		std::cout << CalculateReversePolishNotation(equationDeque) << std::endl;
+		std::cout << CalculateReversePolishNotation(equationQueue) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
