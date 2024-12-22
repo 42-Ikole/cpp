@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 
-Equation::Equation(Operator op_, int32_t leftValue_, int32_t rightValue_)
+Equation::Equation(Operator op_, std::optional<int32_t> leftValue_, int32_t rightValue_)
 	: op(op_)
 	, leftValue(leftValue_)
 	, rightValue(rightValue_)
@@ -31,6 +31,7 @@ int32_t Equation::Execute() const
 	switch (op)
 	{
 		case Operator::plus:
+			std::cout << leftValue.value() << " + " << rightValue << std::endl;
 			return leftValue.value() + rightValue;
 		case Operator::minus:
 			return leftValue.value() - rightValue;
@@ -43,10 +44,15 @@ int32_t Equation::Execute() const
 	}
 }
 
-int32_t CalculateReversePolishNotation(std::queue<Equation> equationQueue);
+int32_t CalculateReversePolishNotation(std::queue<Equation> equationQueue)
 {
+	if (equationQueue.empty())
+	{
+		throw std::runtime_error("cannot do calculation with no equation :)");
+	}
+
 	int32_t result = 0;
-	while (equationDeque.size() >= 3)
+	while (!equationQueue.empty())
 	{
 		auto currentEquation = equationQueue.front();
 		equationQueue.pop();
@@ -60,24 +66,69 @@ int32_t CalculateReversePolishNotation(std::queue<Equation> equationQueue);
 	return result;
 }
 
-std::queue<Equation> CreateEquationStack(const std::string& input)
+std::queue<Equation> CreateEquationQueue(const std::string& input)
 {
-	std::queue<Equation> equationStack;
+	std::queue<Equation> equationQueue;
 
-	bool shouldBeWhiteScpace = false;
+	bool shouldBeWhiteScpace = true;
+	std::optional<int32_t> firstValue;
+	std::optional<int32_t> secondValue;
 	for (const auto& c : input)
 	{
-		if (shouldBeWhiteScpace && !std::isspace(c))
-		{
-			throw std::runtime_error(
-				"Invalid input: `" + input +
-				"` numbers used in the calculation need to adhere to 0 <= n < 10. "
-				"The allowed operators are be `+`, `-`, `/` and `*`"
-			);
-		}
-		
+		// std::cout << "parsing: " << c << std::endl;
 		shouldBeWhiteScpace = !shouldBeWhiteScpace;
+		if (shouldBeWhiteScpace)
+		{
+			if (!std::isspace(c))
+			{
+				throw std::runtime_error(
+					"Invalid input: `" + input +
+					"` numbers used in the calculation need to adhere to 0 <= n < 10. "
+					"The allowed operators are be `+`, `-`, `/` and `*`. Note that you "
+					"can only use one space in between each digit/operator"
+				);
+			}
+			continue;
+		}
+
+		if (!firstValue.has_value())
+		{
+			if (!std::isdigit(c))
+			{
+				throw std::runtime_error("Expected a digit but received: " + std::to_string(+c));
+			}
+			firstValue = c - '0';
+			continue;
+		}
+
+		if (std::isdigit(c))
+		{
+			if (secondValue.has_value())
+			{
+				throw std::runtime_error("Received more than 2 digits in a row");
+			}
+			secondValue = c - '0';
+			continue;
+		}
+
+		const auto op = static_cast<Equation::Operator>(c);
+		
+		if (secondValue.has_value())
+		{
+			equationQueue.emplace(op, firstValue.value(), secondValue.value());
+		}
+		else
+		{
+			equationQueue.emplace(op, std::nullopt, firstValue.value());
+		}
+		firstValue.reset();
+		secondValue.reset();
 	}
 
-	return equationStack;
+	if (firstValue.has_value())
+	{
+		throw std::runtime_error("Invalid equation, equation cannot end with a digit");
+	}
+
+	return equationQueue;
 }

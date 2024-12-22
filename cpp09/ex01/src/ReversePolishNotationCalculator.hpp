@@ -40,4 +40,4 @@ public:
 
 int32_t CalculateReversePolishNotation(std::queue<Equation> equationQueue);
 
-std::queue<Equation> CreateEquationStack(const std::string& input);
+std::queue<Equation> CreateEquationQueue(const std::string& input);
