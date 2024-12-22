@@ -1,7 +1,6 @@
 
 #include "ReversePolishNotationCalculator.hpp"
 
-#include <iostream>
 #include <stdexcept>
 
 Equation::Equation(Operator op_, std::optional<int32_t> leftValue_, int32_t rightValue_)
@@ -31,7 +30,6 @@ int32_t Equation::Execute() const
 	switch (op)
 	{
 		case Operator::plus:
-			std::cout << leftValue.value() << " + " << rightValue << std::endl;
 			return leftValue.value() + rightValue;
 		case Operator::minus:
 			return leftValue.value() - rightValue;
@@ -75,7 +73,6 @@ std::queue<Equation> CreateEquationQueue(const std::string& input)
 	std::optional<int32_t> secondValue;
 	for (const auto& c : input)
 	{
-		// std::cout << "parsing: " << c << std::endl;
 		shouldBeWhiteScpace = !shouldBeWhiteScpace;
 		if (shouldBeWhiteScpace)
 		{

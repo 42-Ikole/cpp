@@ -26,14 +26,41 @@ private:
 	std::optional<int32_t> leftValue; /*!< -.*/
 	const int32_t rightValue; /*!< -. */
 
+	Equation& operator = (const Equation& rhs) = delete;
+
 public:
 
+	/*!
+	 * @brief
+	 * @param op_
+	 * @param leftValue_ (leave empty if you want to set it later, i.e. needs result of other equation)
+	 * @param rightValue_
+	*/
 	Equation(Operator op_, std::optional<int32_t> leftValue_, int32_t rightValue_);
 
+	/*!
+	 * @brief
+	 * @param rhs
+	*/
+	Equation(const Equation& rhs) = default;
+
+
+	/*!
+	 * @brief
+	 * @return
+	*/
 	bool IsLeftValueSet() const;
 
+	/*!
+	 * @brief
+	 * @param newValue
+	*/
 	void SetLeftValue(int32_t newValue);
 
+	/*!
+	 * @brief
+	 * @return Result of the equation.
+	*/
 	int32_t Execute() const;
 
 };
