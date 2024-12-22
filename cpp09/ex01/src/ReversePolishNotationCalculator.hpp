@@ -65,6 +65,17 @@ public:
 
 };
 
+/*!
+ * @brief Calculates the result of the entire queue. The first equation in the queue needs a left value.
+ *		  The ones after can't have the left value set as the result of the previous equation will be used.
+ * @param equationQueue
+ * @return
+*/
 int32_t CalculateReversePolishNotation(std::queue<Equation> equationQueue);
 
+/*!
+ * @brief
+ * @param input
+ * @return
+*/
 std::queue<Equation> CreateEquationQueue(const std::string& input);

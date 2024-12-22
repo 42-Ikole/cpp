@@ -49,16 +49,18 @@ int32_t CalculateReversePolishNotation(std::queue<Equation> equationQueue)
 		throw std::runtime_error("cannot do calculation with no equation :)");
 	}
 
-	int32_t result = 0;
+	int32_t result = equationQueue.front().Execute();
+	equationQueue.pop();
 	while (!equationQueue.empty())
 	{
-		auto currentEquation = equationQueue.front();
-		equationQueue.pop();
-		if (!currentEquation.IsLeftValueSet())
+		auto& currentEquation = equationQueue.front();
+		if (currentEquation.IsLeftValueSet())
 		{
-			currentEquation.SetLeftValue(result);
+			throw std::runtime_error("Equation already has the left hand value set.");
 		}
+		currentEquation.SetLeftValue(result);
 		result = currentEquation.Execute();
+		equationQueue.pop();
 	}
 
 	return result;
