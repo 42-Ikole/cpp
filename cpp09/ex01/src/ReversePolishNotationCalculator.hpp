@@ -44,6 +44,10 @@ public:
 	*/
 	Equation(const Equation& rhs) = default;
 
+	/*!
+	 * @brief
+	*/
+	~Equation() = default;
 
 	/*!
 	 * @brief

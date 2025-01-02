@@ -45,6 +45,11 @@ public:
 
 	/*!
 	 * @brief
+	*/
+	~BitcoinExchange() = default;
+
+	/*!
+	 * @brief
 	 * @param rhs
 	 * @return
 	*/
