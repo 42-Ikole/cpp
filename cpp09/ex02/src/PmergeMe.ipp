@@ -58,6 +58,7 @@ void FordJohnsonSort(Container<T>& toSort)
 		toSort.emplace_back(element);
 	}
 
+	// Insert all smaller elements using binary search.
 	for (const auto& element : smallerElements)
 	{
 		BinaryInsert(toSort, element);
