@@ -64,13 +64,13 @@ static T ConvertStringToArithmeticType(
 */
 template<class T>
 static std::tuple<
-	std::chrono::microseconds,
+	std::chrono::milliseconds,
 	std::chrono::microseconds
 > BenchmarkFunction(
 	const T& parameter,
 	const size_t numberOfRepetitions = 10'000)
 {
-	std::chrono::microseconds totalTime;
+	std::chrono::milliseconds totalTime;
 	for (auto r = numberOfRepetitions; r > 0; r--)
 	{
 		auto arg = parameter;
@@ -79,7 +79,7 @@ static std::tuple<
 		FordJohnsonSort(arg);
 		auto endTime = std::chrono::steady_clock::now();
 		
-		totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+		totalTime += std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
 	}
 	const auto averageTime = totalTime / numberOfRepetitions;
 	return std::tuple{totalTime, averageTime};
