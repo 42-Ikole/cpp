@@ -1,6 +1,7 @@
 #include "PmergeMe.hpp"
 
 #include <ranges>
+#include <algorithm>
 
 template <class T, template<class ...> class Container>
 std::tuple<Container<T>, Container<T>, std::optional<T> > GroupElementsIntoPairs(const Container<T>& toSplit)

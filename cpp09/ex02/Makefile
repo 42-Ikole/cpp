@@ -4,7 +4,7 @@ NAME = PmergeMe
 SRCS = src/main.cpp
 
 $(NAME): $(SRCS)
-	$(CXX) -Wall -Wextra -Werror -std=c++23 -g $(SRCS) -o $(NAME)
+	$(CXX) -Wall -Wextra -Werror -std=c++23 $(SRCS) -o $(NAME)
 
 all: $(NAME)
 
