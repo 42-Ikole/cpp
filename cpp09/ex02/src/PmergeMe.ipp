@@ -2,6 +2,8 @@
 
 #include <ranges>
 #include <algorithm>
+#include <tuple>
+#include <optional>
 
 template <class T, template<class ...> class Container>
 std::tuple<Container<T>, Container<T>, std::optional<T> > GroupElementsIntoPairs(const Container<T>& toSplit)
@@ -10,23 +12,38 @@ std::tuple<Container<T>, Container<T>, std::optional<T> > GroupElementsIntoPairs
 	Container<T> largerElements;
 	std::optional<T> leftOverValue;
 
-	constexpr auto pairChunkSize = 2;
-	for (const auto& chunk : std::views::all(toSplit) | std::views::chunk(pairChunkSize))
+	const auto rangeToTuple = [](const auto&& range) -> std::tuple<T, std::optional<T> >
 	{
-		if (chunk.size() < pairChunkSize)
+		auto itr = range.begin();
+		auto firstValue = *itr;
+		itr++;
+		std::optional<T> secondValue;
+		if (itr != range.end())
 		{
-			leftOverValue = chunk.front();
+			secondValue = *itr;
+		}
+		return std::tuple{firstValue, secondValue};
+	};
+
+	constexpr auto pairChunkSize = 2;
+	for (const auto& [firstValue, secondValueOpt] : std::views::all(toSplit) | std::views::chunk(pairChunkSize) | std::views::transform(rangeToTuple))
+	{
+		if (!secondValueOpt.has_value())
+		{
+			leftOverValue = firstValue;
 			break;
 		}
-		if (chunk.front() < chunk.back())
+		const auto secondValue = secondValueOpt.value();
+	
+		if (firstValue < secondValue)
 		{
-			smallerElements.emplace_back(chunk.front());
-			largerElements.emplace_back(chunk.back());
+			smallerElements.emplace_back(firstValue);
+			largerElements.emplace_back(secondValue);
 		}
 		else
 		{
-			smallerElements.emplace_back(chunk.back());
-			largerElements.emplace_back(chunk.front());
+			smallerElements.emplace_back(secondValue);
+			largerElements.emplace_back(firstValue);
 		}
 	}
 	return std::tuple{smallerElements, largerElements, leftOverValue};

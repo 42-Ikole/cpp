@@ -9,6 +9,7 @@
 #include <charconv>
 #include <vector>
 #include <list>
+#include <deque>
 
 /*!
  * @brief -.
@@ -117,8 +118,10 @@ int main(int argc, char** argv)
 	{
 		const auto inputVector = ParseInputToVector(argv[1]);
 		BenchmarkFunction(inputVector);
-		// const std::list<int> inputList(inputVector.begin(), inputVector.end());
-		// BenchmarkFunction(inputList);
+		const std::deque<int> inputDeque(inputVector.begin(), inputVector.end());
+		BenchmarkFunction(inputDeque);
+		const std::list<int> inputList(inputVector.begin(), inputVector.end());
+		BenchmarkFunction(inputList);
 	}
 	catch(const std::exception& e)
 	{
