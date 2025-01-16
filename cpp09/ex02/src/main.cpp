@@ -30,7 +30,7 @@ static T ConvertStringToArithmeticType(
 	{
 		std::stringstream errorMessage;
 		errorMessage << "Could not convert `" << string << "` to an arithmetic type: " << typeid(T).name()
-					 << " because: " << std::make_error_code(errorCode);
+					 << " because: (system error) " << std::make_error_code(errorCode);
 		throw std::runtime_error(errorMessage.str());
 	}
 	if (ptr != string.end())
@@ -109,7 +109,7 @@ static std::tuple<
 	const Container& containerToSort,
 	const size_t numberOfRepetitions = 10'000)
 {
-	std::chrono::milliseconds totalTime(0);
+	std::chrono::microseconds totalTime(0);
 	for (auto r = numberOfRepetitions; r > 0; r--)
 	{
 		// Making a copy so we cna re-use containerToSort
@@ -119,7 +119,7 @@ static std::tuple<
 		FordJohnsonSort(toSort);
 		auto endTime = std::chrono::steady_clock::now();
 		
-		totalTime += std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+		totalTime += std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime);
 		
 		if (!IsSortedAscending(toSort))
 		{
@@ -127,7 +127,10 @@ static std::tuple<
 		}
 	}
 	const auto averageTime = totalTime / numberOfRepetitions;
-	return std::tuple{totalTime, averageTime};
+	return std::tuple{
+		std::chrono::duration_cast<std::chrono::milliseconds>(totalTime),
+		averageTime
+	};
 }
 
 /*!
