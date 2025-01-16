@@ -29,12 +29,16 @@ static T ConvertStringToArithmeticType(
 	if (errorCode != std::errc{})
 	{
 		std::stringstream errorMessage;
-		errorMessage << "Could not convert `" << string << "` to an arithmetic type: " << typeid(T).name() << " because: " << std::make_error_code(errorCode);
+		errorMessage << "Could not convert `" << string << "` to an arithmetic type: " << typeid(T).name()
+					 << " because: " << std::make_error_code(errorCode);
 		throw std::runtime_error(errorMessage.str());
 	}
 	if (ptr != string.end())
 	{
-		throw std::runtime_error("Could not convert all characters in `" + std::string(string) + "` to an arithmetic type: " + typeid(T).name());
+		throw std::runtime_error(
+			"Could not convert all characters in `" + std::string(string) +
+			"` to an arithmetic type: " + typeid(T).name()
+		);
 	}
 
 	if (value < minimumValue)
@@ -56,30 +60,71 @@ static T ConvertStringToArithmeticType(
 	return value;
 }
 
+template <class T, template<class ...> class Container>
+bool IsSortedAscending(const Container<T>& container)
+{
+	if (container.empty())
+	{
+		return true;
+	}
+
+	const auto rangeToTuple = [](const auto&& range) -> std::tuple<T, std::optional<T> >
+	{
+		auto itr = range.begin();
+		auto firstValue = *itr;
+		itr++;
+		std::optional<T> secondValue;
+		if (itr != range.end())
+		{
+			secondValue = *itr;
+		}
+		return std::tuple{firstValue, secondValue};
+	};
+
+	constexpr auto pairChunkSize = 2;
+	T previousValue = container.front();
+	bool isSorted = true;
+	for (const auto& [leftValue, rightValueOpt] : std::views::all(container) | std::views::chunk(pairChunkSize) | std::views::transform(rangeToTuple))
+	{
+		isSorted &= previousValue <= leftValue;
+		if (rightValueOpt.has_value())
+		{
+			isSorted &= leftValue <= rightValueOpt.value();
+		}
+	}
+	return isSorted;
+}
+
 /*!
  * @brief -.
  * @param parameter Will pass a copy of this for each repetition of the benchmark.
  * @param numberOfRepetitions
  * @return tuple<totalTimeInMilliSeconds, averageTimeInMicroSeconds>
 */
-template<class T>
+template<class Container>
 static std::tuple<
 	std::chrono::milliseconds,
 	std::chrono::microseconds
 > BenchmarkFunction(
-	const T& parameter,
+	const Container& containerToSort,
 	const size_t numberOfRepetitions = 10'000)
 {
-	std::chrono::milliseconds totalTime;
+	std::chrono::milliseconds totalTime(0);
 	for (auto r = numberOfRepetitions; r > 0; r--)
 	{
-		auto arg = parameter;
+		// Making a copy so we cna re-use containerToSort
+		auto toSort = containerToSort;
 
 		auto startTime = std::chrono::steady_clock::now();
-		FordJohnsonSort(arg);
+		FordJohnsonSort(toSort);
 		auto endTime = std::chrono::steady_clock::now();
 		
 		totalTime += std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+		
+		if (!IsSortedAscending(toSort))
+		{
+			throw std::runtime_error("Container was not sorted");
+		}
 	}
 	const auto averageTime = totalTime / numberOfRepetitions;
 	return std::tuple{totalTime, averageTime};
@@ -106,6 +151,28 @@ static std::vector<int> ParseInputToVector(const std::string& inputValuesString)
 	return parsedValues;
 }
 
+/*!
+ * @brief -.
+ * @param totalTime
+ * @param averageTime
+ * @param testedContainer
+*/
+static void PrintBenchMarkResults(
+	const std::chrono::milliseconds& totalTime,
+	const std::chrono::microseconds& averageTime,
+	const std::string& testedContainer)
+{
+	std::cout << "Bench mark results for " << testedContainer << ": total time " << totalTime <<
+				 ", average time " << averageTime << std::endl; 
+}
+
+template <class Container>
+static void RunAndPrintBenchmark(const Container& container, const std::string& containerName)
+{
+	const auto& [totalTime, averageTime] = BenchmarkFunction(container);
+	PrintBenchMarkResults(totalTime, averageTime, containerName);
+}
+
 int main(int argc, char** argv)
 {
 	if (argc != 2)
@@ -117,11 +184,13 @@ int main(int argc, char** argv)
 	try
 	{
 		const auto inputVector = ParseInputToVector(argv[1]);
-		BenchmarkFunction(inputVector);
+		RunAndPrintBenchmark(inputVector, "std::vector");
+
 		const std::deque<int> inputDeque(inputVector.begin(), inputVector.end());
-		BenchmarkFunction(inputDeque);
+		RunAndPrintBenchmark(inputDeque, "std::deque");
+
 		const std::list<int> inputList(inputVector.begin(), inputVector.end());
-		BenchmarkFunction(inputList);
+		RunAndPrintBenchmark(inputList, "std::list");
 	}
 	catch(const std::exception& e)
 	{

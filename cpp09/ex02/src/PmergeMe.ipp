@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <tuple>
 #include <optional>
+#include <functional>
 
 template <class T, template<class ...> class Container>
 std::tuple<Container<T>, Container<T>, std::optional<T> > GroupElementsIntoPairs(const Container<T>& toSplit)
