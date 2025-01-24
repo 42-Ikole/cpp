@@ -17,7 +17,9 @@
 template<class T>
 concept ArithmeticType = std::is_arithmetic_v<T>;
 
-/*!*/
+/*!
+ * @brief- .
+*/
 template<ArithmeticType T>
 static T ConvertStringToArithmeticType(
 	const std::string_view& string,
@@ -60,6 +62,9 @@ static T ConvertStringToArithmeticType(
 	return value;
 }
 
+/*!
+ * @brief -.
+*/
 template <class T, template<class ...> class Container>
 bool IsSortedAscending(const Container<T>& container)
 {
@@ -138,18 +143,13 @@ static std::tuple<
  * @param inputValuesString
  * @return
 */
-static std::vector<int> ParseInputToVector(const std::string& inputValuesString)
+static std::vector<int> ParseInputToVector(char** inputValuesString, int numberOfNumbers)
 {
-	const auto toStringView = [](const auto&& range)
-	{
-		return std::string_view(range);
-	};
-
 	std::vector<int> parsedValues;
-	for (const auto valueString : std::views::split(inputValuesString, ' ') | std::views::transform(toStringView))
+	for (auto i = 0; i < numberOfNumbers; i++)
 	{
 		constexpr auto minimumValue = 0;
-		parsedValues.emplace_back(ConvertStringToArithmeticType<int>(valueString, minimumValue));
+		parsedValues.emplace_back(ConvertStringToArithmeticType<int>(inputValuesString[i], minimumValue));
 	}
 	return parsedValues;
 }
@@ -178,15 +178,15 @@ static void RunAndPrintBenchmark(const Container& container, const std::string& 
 
 int main(int argc, char** argv)
 {
-	if (argc != 2)
+	if (argc < 2)
 	{
-		std::cerr << "Cannot run program with none or multiple parameters, program requires one parameter" << std::endl;;
+		std::cerr << "Cannot run program without parameters, program requires atleast one parameter" << std::endl;;
 		return 1;
 	}
 
 	try
 	{
-		const auto inputVector = ParseInputToVector(argv[1]);
+		const auto inputVector = ParseInputToVector(argv + 1, argc - 1);
 		RunAndPrintBenchmark(inputVector, "std::vector");
 
 		const std::deque<int> inputDeque(inputVector.begin(), inputVector.end());

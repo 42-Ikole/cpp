@@ -8,4 +8,4 @@ RUN apt-get install -y	g++ \
 						git
 
 ## docker build -t ubuntu-test
-## docker run -it -v $PWD/:/ex09 test
+## docker run -it -v $PWD/:/ex09 ubuntu-test
